@@ -15,7 +15,8 @@ public class WeatherOrNot {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ForecastIO forecast = new ForecastIO("37.8267","-122.4233","9811b7c9d35ea099b80118df438269e2");
+        System.out.println(forecast.getHourly());
     }
     
 }

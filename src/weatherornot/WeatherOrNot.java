@@ -6,7 +6,6 @@
 package weatherornot;
 
 import com.github.dvdme.ForecastIOLib.*;
-import com.google.gson.*;
 /**
  *
  * @author Zhewei
@@ -17,9 +16,15 @@ public class WeatherOrNot {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ForecastIO forecast = new ForecastIO("37.8267","-122.4233","9811b7c9d35ea099b80118df438269e2");
+        // state college
+        ForecastIO forecast = new ForecastIO("40.7948376","-77.8653124","9811b7c9d35ea099b80118df438269e2");
         System.out.println(forecast.getCurrently().toString());
-        System.out.println(forecast.getCurrently().get("summary").toString());
+        String summary = forecast.getCurrently().get("summary").toString();
+        System.out.println(removeQuotes(summary));
+    }
+    
+    public static String removeQuotes(String thing) {
+        return thing.substring(1,thing.length()-1);
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package weatherornot;
 
+import com.github.dvdme.ForecastIOLib.*;
+import com.google.gson.*;
 /**
  *
  * @author Zhewei
@@ -16,7 +18,7 @@ public class WeatherOrNot {
      */
     public static void main(String[] args) {
         ForecastIO forecast = new ForecastIO("37.8267","-122.4233","9811b7c9d35ea099b80118df438269e2");
-        System.out.println(forecast.getHourly());
+        System.out.println(forecast.getCurrently().toString());
     }
     
 }

@@ -6,6 +6,8 @@
 package weatherornot;
 
 import com.github.dvdme.ForecastIOLib.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 /**
  *
  * @author Zhewei
@@ -15,12 +17,16 @@ public class WeatherOrNot {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         // state college
         ForecastIO forecast = new ForecastIO("40.7948376","-77.8653124","9811b7c9d35ea099b80118df438269e2");
         System.out.println(forecast.getCurrently().toString());
+        // access by key
         String summary = forecast.getCurrently().get("summary").toString();
         System.out.println(removeQuotes(summary));
+        // IP Address
+        InetAddress IP=InetAddress.getLocalHost();
+        System.out.println(IP.getHostAddress().toString());
     }
     
     public static String removeQuotes(String thing) {

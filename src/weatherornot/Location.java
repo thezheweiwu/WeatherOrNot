@@ -22,7 +22,7 @@ public class Location {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, GeoIp2Exception {
-        File database = new File("GeoLite2-City.mmdb");
+        File database = new File("src/WeatherOrNot/GeoLite2-City.mmdb");
         DatabaseReader reader = new DatabaseReader.Builder(database).build();
 
         InetAddress IP = InetAddress.getLocalHost();

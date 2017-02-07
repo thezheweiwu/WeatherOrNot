@@ -26,12 +26,11 @@ public class Location {
     private String longitude;
     private String city;
     private String state;
+    private final File database = new File("db/GeoLite2-City.mmdb");
 
     Location() throws IOException, GeoIp2Exception {
-        File database = new File("db/GeoLite2-City.mmdb");
-        DatabaseReader reader = new DatabaseReader.Builder(database).build();
-        // IP Address
         URL whatismyip = new URL("http://checkip.amazonaws.com");
+        DatabaseReader reader = new DatabaseReader.Builder(database).build();
         BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
         String ipString = in.readLine();
         InetAddress IP  =  InetAddress.getByName(ipString);
@@ -42,6 +41,11 @@ public class Location {
         longitude = location.getLongitude().toString();
         city = response.getCity().getName();
         state = subdivision.getIsoCode();
+    }
+    
+    // implement 
+    Location(int zipcode)  {
+            
     }
 
     public String getLatitude() {

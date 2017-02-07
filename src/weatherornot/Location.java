@@ -5,12 +5,16 @@
  */
 package weatherornot;
 
-import com.maxmind.geoip2.*;
+import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
+import com.maxmind.geoip2.record.Subdivision;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.net.URL;
 
 /**
  *
@@ -18,19 +22,60 @@ import java.net.InetAddress;
  */
 public class Location {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException, GeoIp2Exception {
-        File database = new File("src/WeatherOrNot/GeoLite2-City.mmdb");
-        DatabaseReader reader = new DatabaseReader.Builder(database).build();
+    private String latitude;
+    private String longitude;
+    private String city;
+    private String state;
 
-        InetAddress IP = InetAddress.getLocalHost();
+    Location() throws IOException, GeoIp2Exception {
+        File database = new File("db/GeoLite2-City.mmdb");
+        DatabaseReader reader = new DatabaseReader.Builder(database).build();
+        // IP Address
+        URL whatismyip = new URL("http://checkip.amazonaws.com");
+        BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+        String ipString = in.readLine();
+        InetAddress IP  =  InetAddress.getByName(ipString);
         CityResponse response = reader.city(IP);
         com.maxmind.geoip2.record.Location location = response.getLocation();
-        System.out.println(location.getLatitude());  // 44.9733
-        System.out.println(location.getLongitude());
-
+        Subdivision subdivision = response.getMostSpecificSubdivision();
+        latitude = location.getLatitude().toString();
+        longitude = location.getLongitude().toString();
+        city = response.getCity().toString();
+        state = subdivision.getIsoCode();
     }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    
+    
 
 }

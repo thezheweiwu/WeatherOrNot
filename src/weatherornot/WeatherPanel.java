@@ -21,7 +21,11 @@ class WeatherPanel extends JPanel{
     private Location location;
     private ForecastIO forecast;
     private JLabel locationLabel;
-    private JLabel weatherSummary;
+    private JLabel summaryLabel;
+    private JLabel precipProbabilityLabel;
+    private JLabel temperatureLabel;
+    private JLabel humidityLabel;
+    private JLabel windSpeedLabel;
     
     WeatherPanel() throws IOException, GeoIp2Exception {
         super();
@@ -29,7 +33,15 @@ class WeatherPanel extends JPanel{
         forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
         locationLabel = new JLabel("Location: "+location.getCity()+", "+location.getState());
         add(locationLabel);
-        weatherSummary = new JLabel(forecast.getCurrently().get("summary").toString());
-        add(weatherSummary);
+        summaryLabel = new JLabel("Summary: "+forecast.getCurrently().get("summary").toString());
+        add(summaryLabel);
+        precipProbabilityLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString()+"%");
+        add(precipProbabilityLabel);
+        temperatureLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("temperature").toString()+"F");
+        add(temperatureLabel);
+        humidityLabel = new JLabel("Humidity: "+forecast.getCurrently().get("humidity").toString());
+        add(humidityLabel);
+        windSpeedLabel = new JLabel("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString()+"mph");
+        add(windSpeedLabel);
     }
 }

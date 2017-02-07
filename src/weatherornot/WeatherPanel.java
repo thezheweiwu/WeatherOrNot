@@ -37,11 +37,11 @@ class WeatherPanel extends JPanel{
         add(summaryLabel);
         precipProbabilityLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString()+"%");
         add(precipProbabilityLabel);
-        temperatureLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("temperature").toString()+"F");
+        temperatureLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("temperature"));
         add(temperatureLabel);
         humidityLabel = new JLabel("Humidity: "+forecast.getCurrently().get("humidity").toString());
         add(humidityLabel);
-        windSpeedLabel = new JLabel("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString()+"mph");
+        windSpeedLabel = new JLabel("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString());
         add(windSpeedLabel);
     }
 }

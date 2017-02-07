@@ -16,11 +16,11 @@ import javax.swing.JFrame;
 public class WeatherFrame extends JFrame {
     
     WeatherFrame() throws IOException, GeoIp2Exception {
-        super();
+        super("Weather or Not");
         WeatherPanel wp = new WeatherPanel();
         add(wp);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400,600);
+        setSize(400,200);
         setVisible(true);
     }
 }

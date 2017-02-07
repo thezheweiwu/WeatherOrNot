@@ -7,9 +7,11 @@ package weatherornot;
 
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +21,6 @@ import javax.swing.JPanel;
  * @author Zhewei
  */
 class WeatherPanel extends JPanel implements ActionListener{
-    
     
     private Location location;
     private ForecastIO forecast;
@@ -34,13 +35,14 @@ class WeatherPanel extends JPanel implements ActionListener{
     
     WeatherPanel() throws IOException, GeoIp2Exception {
         super();
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         location = new Location();
         forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
         timeLabel = new JLabel("Time: " + forecast.getCurrently().get("time").toString());
         add(timeLabel);
         locationLabel = new JLabel("Location: "+location.getCity()+", "+location.getState());
         add(locationLabel);
-        summaryLabel = new JLabel("Summary: "+forecast.getCurrently().get("summary").toString());
+        summaryLabel = new JLabel("Summary: "+forecast.getCurrently().get("summary"));
         add(summaryLabel);
         precipProbabilityLabel = new JLabel("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString());
         add(precipProbabilityLabel);
@@ -64,6 +66,7 @@ class WeatherPanel extends JPanel implements ActionListener{
         humidityLabel.setText("Humidity: "+forecast.getCurrently().get("humidity").toString());
         windSpeedLabel.setText("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString());
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {

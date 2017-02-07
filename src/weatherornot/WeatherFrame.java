@@ -7,17 +7,20 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Zhewei
  */
-public class WeatherOrNot {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException, GeoIp2Exception {
-        WeatherFrame wf = new WeatherFrame();
+public class WeatherFrame extends JFrame {
+    
+    WeatherFrame() throws IOException, GeoIp2Exception {
+        super();
+        WeatherPanel wp = new WeatherPanel();
+        add(wp);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(400,600);
+        setVisible(true);
     }
 }

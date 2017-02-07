@@ -40,7 +40,7 @@ public class Location {
         Subdivision subdivision = response.getMostSpecificSubdivision();
         latitude = location.getLatitude().toString();
         longitude = location.getLongitude().toString();
-        city = response.getCity().toString();
+        city = response.getCity().getName();
         state = subdivision.getIsoCode();
     }
 

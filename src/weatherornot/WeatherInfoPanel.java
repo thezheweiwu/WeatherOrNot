@@ -33,18 +33,25 @@ public class WeatherInfoPanel extends JPanel{
         super();
         setBackground(new Color(116,130,143));
         location = new Location();
+        String state = location.getState();
         if (location.getCountry().equals("United States")) {
-            weatherUnit = "°F";
+            weatherUnit = " °F";
             windUnit = " mph";
         }
         else {
-            weatherUnit = "°C";
+            weatherUnit = " °C";
             windUnit = " km/h";
         }
+        if (state==null) {
+                state = "";
+            }
+            else {
+                state = ", " + state;
+            }
         forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
         timeLabel = addLabel("Time: " + forecast.getCurrently().get("time").toString());
         add(timeLabel);
-        locationLabel = addLabel("Location: "+location.getCity()+", "+location.getState());
+        locationLabel = addLabel("Location: "+location.getCity()+state);
         add(locationLabel);
         summaryLabel = addLabel("Summary: "+forecast.getCurrently().get("summary"));
         add(summaryLabel);

@@ -23,6 +23,7 @@ public class WeatherFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,400);
         setIconImage(new ImageIcon("icon.png").getImage());
+        setResizable(false);
         setVisible(true);
     }
 }

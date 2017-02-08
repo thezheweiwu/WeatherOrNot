@@ -8,6 +8,7 @@ package weatherornot;
 import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
 /**
  *

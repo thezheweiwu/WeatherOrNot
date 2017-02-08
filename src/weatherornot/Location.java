@@ -26,6 +26,7 @@ public class Location {
     private String longitude;
     private String city;
     private String state;
+    private String country;
     private final File database = new File("db/GeoLite2-City.mmdb");
 
     Location() throws IOException, GeoIp2Exception {
@@ -41,6 +42,7 @@ public class Location {
         longitude = location.getLongitude().toString();
         city = response.getCity().getName();
         state = subdivision.getIsoCode();
+        country = response.getCountry().getName();
     }
     
     // implement 
@@ -80,6 +82,13 @@ public class Location {
         this.state = state;
     }
     
+    public String getCountry() {
+        return country;
+    }
+    
+    public void setCountry(String country) {
+        this.country = country;
+    }
     
 
 }

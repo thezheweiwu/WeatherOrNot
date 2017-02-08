@@ -21,7 +21,7 @@ public class WeatherFrame extends JFrame {
         WeatherPanel wp = new WeatherPanel();
         add(wp);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400,200);
+        setSize(800,400);
         setIconImage(new ImageIcon("icon.png").getImage());
         setVisible(true);
     }

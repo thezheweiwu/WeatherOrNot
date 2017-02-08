@@ -7,7 +7,6 @@ package weatherornot;
 
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;

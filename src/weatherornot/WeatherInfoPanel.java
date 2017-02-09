@@ -35,6 +35,29 @@ public class WeatherInfoPanel extends JPanel{
     WeatherInfoPanel() throws IOException, GeoIp2Exception {
         super();
         setBackground(new Color(116,130,143));
+        timeLabel = addLabel();
+        add(timeLabel);
+        locationLabel = addLabel();
+        add(locationLabel);
+        summaryLabel = addLabel();
+        add(summaryLabel);
+        precipProbabilityLabel = addLabel();
+        add(precipProbabilityLabel);
+        temperatureLabel = addLabel();
+        add(temperatureLabel);
+        realFeelLabel = addLabel();
+        add(realFeelLabel);
+        humidityLabel = addLabel();
+        add(humidityLabel);
+        windSpeedLabel = addLabel();
+        add(windSpeedLabel);
+        updateInfo();
+        setLayout(new GridLayout(4,2));
+    }
+    
+    void updateInfo() throws IOException, GeoIp2Exception {
+        Location location = new Location();
+        ForecastIO forecast = forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
         location = new Location();
         state = location.getState();
         if (location.getCountry().equals("United States")) {
@@ -51,39 +74,13 @@ public class WeatherInfoPanel extends JPanel{
             else {
                 state = ", " + state;
             }
-        forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
-        long time = Long.valueOf(forecast.getCurrently().get("time").toString());
-        Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
-        String date = sdf.format(unixDate);
-        timeLabel = addLabel("Time: " + date);
-        add(timeLabel);
-        locationLabel = addLabel("Location: "+location.getCity()+state);
-        add(locationLabel);
-        summaryLabel = addLabel("Summary: "+forecast.getCurrently().get("summary"));
-        add(summaryLabel);
-        precipProbabilityLabel = addLabel("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString());
-        add(precipProbabilityLabel);
-        temperatureLabel = addLabel("Tempatures: "+forecast.getCurrently().get("temperature")+weatherUnit);
-        add(temperatureLabel);
-        realFeelLabel = addLabel("Real Feel: "+forecast.getCurrently().get("apparentTemperature")+weatherUnit);
-        add(realFeelLabel);
-        humidityLabel = addLabel("Humidity: "+forecast.getCurrently().get("humidity").toString());
-        add(humidityLabel);
-        windSpeedLabel = addLabel("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString()+windUnit);
-        add(windSpeedLabel);
-        setLayout(new GridLayout(4,2));
-    }
-    
-    void updateInfo() {
-        forecast.update();
         long time = Long.valueOf(forecast.getCurrently().get("time").toString());
         Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
         String date = sdf.format(unixDate);
         timeLabel.setText("Time: " + date);
         locationLabel.setText("Location: "+location.getCity()+state);
-        summaryLabel.setText("Summary: "+forecast.getCurrently().get("summary").toString());
+        summaryLabel.setText("Summary: "+forecast.getCurrently().get("summary"));
         precipProbabilityLabel.setText("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString());
         temperatureLabel.setText("Tempatures: "+forecast.getCurrently().get("temperature")+weatherUnit);
         realFeelLabel.setText("Real Feel: "+forecast.getCurrently().get("apparentTemperature")+weatherUnit);
@@ -91,8 +88,8 @@ public class WeatherInfoPanel extends JPanel{
         windSpeedLabel.setText("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString()+windUnit);
     }
     
-    JLabel addLabel(String text) {
-        JLabel label = new JLabel(text);
+    JLabel addLabel() {
+        JLabel label = new JLabel();
         label.setFont(new Font("SansSerif", Font.BOLD, 20));
         label.setForeground(Color.white);
         label.setHorizontalAlignment(JLabel.CENTER);

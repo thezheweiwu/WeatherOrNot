@@ -9,6 +9,8 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -34,7 +36,13 @@ class WeatherPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==mp.getRefresh()) {
-            wip.updateInfo();
+            try {
+                wip.updateInfo();
+            } catch (IOException ex) {
+                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (GeoIp2Exception ex) {
+                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(e.getSource()==mp.getChangeLocationButton()) {
             JFrame frame = new JFrame();

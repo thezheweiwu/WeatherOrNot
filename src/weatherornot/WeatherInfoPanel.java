@@ -20,14 +20,14 @@ import javax.swing.*;
 public class WeatherInfoPanel extends JPanel{
     private Location location;
     private ForecastIO forecast;
-    private JLabel timeLabel;
-    private JLabel locationLabel;
-    private JLabel summaryLabel;
-    private JLabel precipProbabilityLabel;
-    private JLabel temperatureLabel;
-    private JLabel realFeelLabel;
-    private JLabel humidityLabel;
-    private JLabel windSpeedLabel;
+    private final JLabel timeLabel;
+    private final JLabel locationLabel;
+    private final JLabel summaryLabel;
+    private final JLabel precipProbabilityLabel;
+    private final JLabel temperatureLabel;
+    private final JLabel realFeelLabel;
+    private final JLabel humidityLabel;
+    private final JLabel windSpeedLabel;
     private String weatherUnit;
     private String windUnit;
     private String state;
@@ -56,8 +56,8 @@ public class WeatherInfoPanel extends JPanel{
     }
     
     void updateInfo() throws IOException, GeoIp2Exception {
-        Location location = new Location();
-        ForecastIO forecast = forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
+        this.location = new Location();
+        this.forecast = forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
         location = new Location();
         state = location.getState();
         if (location.getCountry().equals("United States")) {

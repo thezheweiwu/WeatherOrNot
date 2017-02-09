@@ -76,7 +76,7 @@ public class WeatherInfoPanel extends JPanel{
             }
         long time = Long.valueOf(forecast.getCurrently().get("time").toString());
         Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a"); // the format of your date
         String date = sdf.format(unixDate);
         timeLabel.setText("Time: " + date);
         locationLabel.setText("Location: "+location.getCity()+state);

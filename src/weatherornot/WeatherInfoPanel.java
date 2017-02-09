@@ -61,11 +61,11 @@ public class WeatherInfoPanel extends JPanel{
         location = new Location();
         state = location.getState();
         if (location.getCountry().equals("United States")) {
-            weatherUnit = " °F";
+            weatherUnit = "°F";
             windUnit = " mph";
         }
         else {
-            weatherUnit = " °C";
+            weatherUnit = "°C";
             windUnit = " km/h";
         }
         if (state==null) {
@@ -84,7 +84,7 @@ public class WeatherInfoPanel extends JPanel{
         precipProbabilityLabel.setText("Precipitation Probability: "+String.format("%.0f", Double.parseDouble(forecast.getCurrently().get("precipProbability").toString())*100)+"%");
         temperatureLabel.setText("Tempatures: "+forecast.getCurrently().get("temperature")+weatherUnit);
         realFeelLabel.setText("Real Feel: "+forecast.getCurrently().get("apparentTemperature")+weatherUnit);
-        humidityLabel.setText("Humidity: "+forecast.getCurrently().get("humidity").toString());
+        humidityLabel.setText("Humidity: "+String.format("%.0f", Double.parseDouble(forecast.getCurrently().get("humidity").toString())*100)+"%");
         windSpeedLabel.setText("Wind Speed: "+forecast.getCurrently().get("windSpeed").toString()+windUnit);
     }
     

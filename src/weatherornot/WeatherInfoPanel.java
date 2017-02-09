@@ -9,6 +9,8 @@ import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.*;
 
 /**
@@ -28,12 +30,13 @@ public class WeatherInfoPanel extends JPanel{
     private JLabel windSpeedLabel;
     private String weatherUnit;
     private String windUnit;
+    private String state;
     
     WeatherInfoPanel() throws IOException, GeoIp2Exception {
         super();
         setBackground(new Color(116,130,143));
         location = new Location();
-        String state = location.getState();
+        state = location.getState();
         if (location.getCountry().equals("United States")) {
             weatherUnit = " °F";
             windUnit = " mph";
@@ -49,7 +52,11 @@ public class WeatherInfoPanel extends JPanel{
                 state = ", " + state;
             }
         forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
-        timeLabel = addLabel("Time: " + forecast.getCurrently().get("time").toString());
+        long time = Long.valueOf(forecast.getCurrently().get("time").toString());
+        Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
+        String date = sdf.format(unixDate);
+        timeLabel = addLabel("Time: " + date);
         add(timeLabel);
         locationLabel = addLabel("Location: "+location.getCity()+state);
         add(locationLabel);
@@ -70,8 +77,12 @@ public class WeatherInfoPanel extends JPanel{
     
     void updateInfo() {
         forecast.update();
-        timeLabel.setText("Time: " + forecast.getCurrently().get("time").toString());
-        locationLabel.setText("Location: "+location.getCity()+", "+location.getState());
+        long time = Long.valueOf(forecast.getCurrently().get("time").toString());
+        Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
+        String date = sdf.format(unixDate);
+        timeLabel.setText("Time: " + date);
+        locationLabel.setText("Location: "+location.getCity()+state);
         summaryLabel.setText("Summary: "+forecast.getCurrently().get("summary").toString());
         precipProbabilityLabel.setText("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString());
         temperatureLabel.setText("Tempatures: "+forecast.getCurrently().get("temperature")+weatherUnit);

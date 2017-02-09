@@ -81,7 +81,7 @@ public class WeatherInfoPanel extends JPanel{
         timeLabel.setText("Time: " + date);
         locationLabel.setText("Location: "+location.getCity()+state);
         summaryLabel.setText("Summary: "+functions.removeQuotes(forecast.getCurrently().get("summary").toString()));
-        precipProbabilityLabel.setText("Precipitation Probability: "+forecast.getCurrently().get("precipProbability").toString());
+        precipProbabilityLabel.setText("Precipitation Probability: "+String.format("%.0f", Double.parseDouble(forecast.getCurrently().get("precipProbability").toString())*100)+"%");
         temperatureLabel.setText("Tempatures: "+forecast.getCurrently().get("temperature")+weatherUnit);
         realFeelLabel.setText("Real Feel: "+forecast.getCurrently().get("apparentTemperature")+weatherUnit);
         humidityLabel.setText("Humidity: "+forecast.getCurrently().get("humidity").toString());

@@ -12,7 +12,6 @@ package weatherornot;
  */
 public class functions {
 
-
     public static String removeQuotes(String text) {
         return text.substring(1,text.length()-1);
     }

@@ -19,8 +19,8 @@ import javax.swing.*;
  */
 class WeatherPanel extends JPanel implements ActionListener{
     
-    private MenuPanel mp;
-    private WeatherInfoPanel wip;
+    private final MenuPanel mp;
+    private final WeatherInfoPanel wip;
     
     WeatherPanel() throws IOException, GeoIp2Exception {
         super();

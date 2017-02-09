@@ -8,15 +8,14 @@ package weatherornot;
 import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 
 /**
  *
  * @author Zhewei
  */
 public class MenuPanel extends JPanel{
-    private JButton refreshButton;
-    private JButton changeLocationButton;
+    private final JButton refreshButton;
+    private final JButton changeLocationButton;
     
     MenuPanel() {
         super();

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Zhewei
  */
-public class MenuPanel extends JPanel{
+public final class MenuPanel extends JPanel{
     private final JButton refreshButton;
     private final JButton changeLocationButton;
     

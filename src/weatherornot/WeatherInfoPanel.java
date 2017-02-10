@@ -17,7 +17,7 @@ import javax.swing.*;
  *
  * @author Zhewei
  */
-public class WeatherInfoPanel extends JPanel{
+public final class WeatherInfoPanel extends JPanel{
     private Location location;
     private ForecastIO forecast;
     private final JLabel timeLabel;

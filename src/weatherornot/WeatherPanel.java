@@ -38,9 +38,7 @@ class WeatherPanel extends JPanel implements ActionListener{
         if(e.getSource()==mp.getRefresh()) {
             try {
                 wip.updateInfo();
-            } catch (IOException ex) {
-                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (GeoIp2Exception ex) {
+            } catch (IOException | GeoIp2Exception ex) {
                 Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

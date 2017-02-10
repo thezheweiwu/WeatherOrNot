@@ -27,6 +27,8 @@ public class Location {
     private String city;
     private String state;
     private String country;
+    private String weatherUnit;
+    private String windUnit;
     private final File database = new File("db/GeoLite2-City.mmdb");
 
     Location() throws IOException, GeoIp2Exception {
@@ -43,6 +45,20 @@ public class Location {
         city = response.getCity().getName();
         state = subdivision.getIsoCode();
         country = response.getCountry().getName();
+        if (this.getCountry().equals("United States")) {
+            weatherUnit = "°F";
+            windUnit = " mph";
+        }
+        else {
+            weatherUnit = "°C";
+            windUnit = " km/h";
+        }
+        if (state==null) {
+                state = "";
+            }
+            else {
+                state = ", " + state;
+            }
     }
     
     // implement 
@@ -88,6 +104,22 @@ public class Location {
     
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getWeatherUnit() {
+        return weatherUnit;
+    }
+
+    public void setWeatherUnit(String weatherUnit) {
+        this.weatherUnit = weatherUnit;
+    }
+
+    public String getWindUnit() {
+        return windUnit;
+    }
+
+    public void setWindUnit(String windUnit) {
+        this.windUnit = windUnit;
     }
     
 

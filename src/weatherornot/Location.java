@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,13 +31,20 @@ public class Location {
     private String weatherUnit;
     private String windUnit;
     private final File database = new File("db/GeoLite2-City.mmdb");
+    private final ArrayList<String> useF = new ArrayList<String>() {
+        {
+            add("United States");
+            add("Palau");
+            add("Belize");
+        }
+    };
 
     Location() throws IOException, GeoIp2Exception {
         URL whatismyip = new URL("http://checkip.amazonaws.com");
         DatabaseReader reader = new DatabaseReader.Builder(database).build();
         BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
         String ipString = in.readLine();
-        InetAddress IP  =  InetAddress.getByName(ipString);
+        InetAddress IP = InetAddress.getByName(ipString);
         CityResponse response = reader.city(IP);
         com.maxmind.geoip2.record.Location location = response.getLocation();
         Subdivision subdivision = response.getMostSpecificSubdivision();
@@ -45,25 +53,23 @@ public class Location {
         city = response.getCity().getName();
         state = subdivision.getIsoCode();
         country = response.getCountry().getName();
-        if (this.getCountry().equals("United States")) {
+        if (useF.contains(this.getCountry())) {
             weatherUnit = "°F";
             windUnit = " mph";
-        }
-        else {
+        } else {
             weatherUnit = "°C";
             windUnit = " km/h";
         }
-        if (state==null) {
-                state = "";
-            }
-            else {
-                state = ", " + state;
-            }
+        if (state == null) {
+            state = "";
+        } else {
+            state = ", " + state;
+        }
     }
-    
+
     // implement 
-    Location(int zipcode)  {
-            
+    Location(int zipcode) {
+
     }
 
     public String getLatitude() {
@@ -97,11 +103,11 @@ public class Location {
     public void setState(String state) {
         this.state = state;
     }
-    
+
     public String getCountry() {
         return country;
     }
-    
+
     public void setCountry(String country) {
         this.country = country;
     }
@@ -121,6 +127,5 @@ public class Location {
     public void setWindUnit(String windUnit) {
         this.windUnit = windUnit;
     }
-    
 
 }

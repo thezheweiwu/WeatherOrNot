@@ -53,7 +53,7 @@ public class Location {
         city = response.getCity().getName();
         state = subdivision.getIsoCode();
         country = response.getCountry().getName();
-        if (useF.contains(this.getCountry())) {
+        if (useF.contains(country)) {
             weatherUnit = "°F";
             windUnit = " mph";
         } else {

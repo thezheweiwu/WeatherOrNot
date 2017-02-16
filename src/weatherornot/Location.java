@@ -68,7 +68,7 @@ public class Location {
     }
 
     // implement 
-    Location(int zipcode) {
+    Location(String zipcode) {
 
     }
 

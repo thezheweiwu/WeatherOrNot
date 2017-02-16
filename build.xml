@@ -12,6 +12,7 @@
     <import file="nbproject/build-impl.xml"/>
 	<target name="-post-compile">
 		<copy file="db/GeoLite2-City.mmdb" todir="${dist.dir}/db"/> 
+		<copy file="db/zipcodes.csv" todir="${dist.dir}/db"/> 
 		<copy file="icon.png" todir="${dist.dir}"/> 
 	</target>
     <!--

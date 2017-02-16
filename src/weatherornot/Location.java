@@ -32,7 +32,6 @@ public class Location {
     private String country;
     private String weatherUnit;
     private String windUnit;
-    private final File database = new File("db/GeoLite2-City.mmdb");
     private final ArrayList<String> useF = new ArrayList<String>() {
         {
             add("United States");
@@ -42,6 +41,7 @@ public class Location {
     };
 
     Location() throws IOException, GeoIp2Exception {
+        File database = new File("db/GeoLite2-City.mmdb");
         URL whatismyip = new URL("http://checkip.amazonaws.com");
         DatabaseReader reader = new DatabaseReader.Builder(database).build();
         BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
@@ -82,7 +82,7 @@ public class Location {
                 country = "United States";
                 weatherUnit = "°F";
                 windUnit = " mph";
-            }  
+            }
         }
     }
 

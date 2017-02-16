@@ -5,6 +5,10 @@
  */
 package weatherornot;
 
+import com.csvreader.CsvReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  *
  * @author Zhewei
@@ -17,7 +21,7 @@ public class NewMain {
     public static void main(String[] args) {
   /** let's use the following zip code simply for the purpose of this 
       example (its the zip code for hollywood callifornia) */
-  String zipCode = 91601
+  String zipCode = "91601";
   String latitude = "0";
   String longitude = "0";
 try {
@@ -25,14 +29,13 @@ try {
                       JavaCVS api is required in order to read this, it can
                       be found at http://sourceforge.net/projects/javacsv/
                      **/
-        CsvReader products = new CsvReader("zips.csv");
+        CsvReader products = new CsvReader("db/zipcode.csv");
                     /** a cvs containing all the zip codes and latitudes
                         and longitudes can be found at: 
                         http://sourceforge.net/projects/zips/files/zips/zips.csv.zip/
                     **/
         products.readHeaders();
         int numOfHeaders = products.getHeaderCount();
-        System.out.println("Number of headers" + numOfHeaders);
         try {
             while (products.readRecord())
             {
@@ -41,6 +44,8 @@ try {
             if (lookedupZip.equals(zipCode)) {
                 latitude = products.get(products.getHeader(2));
                 longitude = products.get(products.getHeader(3));
+                System.out.print(latitude);
+                System.out.println(longitude);
             }
 
             }

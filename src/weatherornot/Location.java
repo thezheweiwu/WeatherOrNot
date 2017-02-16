@@ -5,12 +5,14 @@
  */
 package weatherornot;
 
+import com.csvreader.CsvReader;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.record.Subdivision;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
@@ -68,8 +70,20 @@ public class Location {
     }
 
     // implement 
-    Location(String zipcode) {
-
+    Location(String zipcode) throws FileNotFoundException, IOException {
+        CsvReader zipDB = new CsvReader("db/zipcode.csv");
+        zipDB.readHeaders();
+        while (zipDB.readRecord()) {
+            if (zipDB.get(zipDB.getHeader(0)).equals(zipcode)) {
+                latitude = zipDB.get(zipDB.getHeader(2));
+                longitude = zipDB.get(zipDB.getHeader(3));
+                city = zipDB.get(zipDB.getHeader(4));
+                state = zipDB.get(zipDB.getHeader(1));
+                country = "United States";
+                weatherUnit = "°F";
+                windUnit = " mph";
+            }  
+        }
     }
 
     public String getLatitude() {

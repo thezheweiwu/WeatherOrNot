@@ -22,7 +22,7 @@ public final class MenuPanel extends JPanel{
         setBackground(new Color(150,192,206));
         refreshButton = addButton("Refresh");
         add(refreshButton);
-        changeLocationButton = addButton("Change Location");
+        changeLocationButton = addButton("See Locations");
         add(changeLocationButton);
     }
     

@@ -21,6 +21,7 @@ class WeatherPanel extends JPanel implements ActionListener{
     
     private final MenuPanel mp;
     private final WeatherInfoPanel wip;
+    private final LocationPanel lp;
     
     WeatherPanel() throws IOException, GeoIp2Exception {
         super();
@@ -29,6 +30,8 @@ class WeatherPanel extends JPanel implements ActionListener{
         add(mp,BorderLayout.NORTH);
         wip = new WeatherInfoPanel();
         add(wip,BorderLayout.CENTER);
+        lp = new LocationPanel();
+        add(lp, BorderLayout.SOUTH);
         mp.getRefresh().addActionListener(this);
         mp.getChangeLocationButton().addActionListener(this);
     }
@@ -41,9 +44,6 @@ class WeatherPanel extends JPanel implements ActionListener{
             } catch (IOException | GeoIp2Exception ex) {
                 Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if(e.getSource()==mp.getChangeLocationButton()) {
-            LocationFrame lf = new LocationFrame();
         }
     }
     

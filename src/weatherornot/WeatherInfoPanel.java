@@ -49,14 +49,18 @@ public final class WeatherInfoPanel extends JPanel{
         add(humidityLabel);
         windSpeedLabel = addLabel();
         add(windSpeedLabel);
-        updateInfo();
+        updateInfo("");
         setLayout(new GridLayout(4,2));
     }
     
-    void updateInfo() throws IOException, GeoIp2Exception {
-        this.location = new Location();
+    void updateInfo(String zip) throws IOException, GeoIp2Exception {
+        if (zip.equals("")) {
+            this.location = new Location();
+        }
+        else {
+            this.location = new Location(zip);
+        }
         this.forecast = forecast = new ForecastIO(location.getLatitude(), location.getLongitude(), "9811b7c9d35ea099b80118df438269e2");
-        location = new Location();
         long time = Long.valueOf(forecast.getCurrently().get("time").toString());
         Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a"); // the format of your date

@@ -77,7 +77,7 @@ public class Location {
             if (zipDB.get(zipDB.getHeader(0)).equals(zipcode)) {
                 latitude = zipDB.get(zipDB.getHeader(2));
                 longitude = zipDB.get(zipDB.getHeader(3));
-                city = zipDB.get(zipDB.getHeader(4));
+                city = zipDB.get(zipDB.getHeader(4)) + ", ";
                 state = zipDB.get(zipDB.getHeader(1));
                 country = "United States";
                 weatherUnit = "°F";

@@ -34,13 +34,21 @@ class WeatherPanel extends JPanel implements ActionListener{
         add(lp, BorderLayout.SOUTH);
         mp.getRefresh().addActionListener(this);
         mp.getChangeLocationButton().addActionListener(this);
+        lp.getSubmit().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==mp.getRefresh()) {
             try {
-                wip.updateInfo();
+                wip.updateInfo("");
+            } catch (IOException | GeoIp2Exception ex) {
+                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                wip.updateInfo(lp.getZipcodeField().getText());
             } catch (IOException | GeoIp2Exception ex) {
                 Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
             }

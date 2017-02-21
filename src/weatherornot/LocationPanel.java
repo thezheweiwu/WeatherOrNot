@@ -26,7 +26,7 @@ public class LocationPanel extends JPanel{
     LocationPanel() {
         super();
         setBackground(new Color(150,192,206));
-        directions = new JLabel("Input a zipcode to select a new location");
+        directions = new JLabel("Input a zipcode to select a new location:");
         directions.setFont(new Font("SansSerif", Font.BOLD, 16));
         directions.setForeground(Color.white);
         add(directions);

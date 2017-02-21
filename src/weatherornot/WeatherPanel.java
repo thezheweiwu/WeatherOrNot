@@ -43,9 +43,7 @@ class WeatherPanel extends JPanel implements ActionListener{
             }
         }
         if(e.getSource()==mp.getChangeLocationButton()) {
-            JFrame frame = new JFrame();
-            frame.setSize(400, 400);
-            frame.setVisible(true);
+            LocationFrame lf = new LocationFrame();
         }
     }
     

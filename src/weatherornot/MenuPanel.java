@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 public final class MenuPanel extends JPanel{
     private final JButton refreshButton;
     private final JButton changeLocationButton;
+    private final JButton userPreferencesButton;
     
     MenuPanel() {
         super();
@@ -24,6 +25,8 @@ public final class MenuPanel extends JPanel{
         add(refreshButton);
         changeLocationButton = addButton("See Locations");
         add(changeLocationButton);
+        userPreferencesButton = addButton("Change User Preferences");
+        add(userPreferencesButton);
     }
     
     public JButton getRefresh() {
@@ -32,6 +35,10 @@ public final class MenuPanel extends JPanel{
     
     public JButton getChangeLocationButton() {
         return changeLocationButton;
+    }
+    
+    public JButton getUserPreferencesButton () {
+        return userPreferencesButton;
     }
     
     private JButton addButton(String text) {

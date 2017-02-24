@@ -34,6 +34,7 @@ class WeatherPanel extends JPanel implements ActionListener{
         add(lp, BorderLayout.SOUTH);
         mp.getRefresh().addActionListener(this);
         mp.getChangeLocationButton().addActionListener(this);
+        mp.getUserPreferencesButton().addActionListener(this);
         lp.getSubmit().addActionListener(this);
     }
 
@@ -45,6 +46,9 @@ class WeatherPanel extends JPanel implements ActionListener{
             } catch (IOException | GeoIp2Exception ex) {
                 Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        if (e.getSource()==mp.getUserPreferencesButton()) {
+            UserPreferenceFrame upf = new UserPreferenceFrame();
         }
         else {
             try {

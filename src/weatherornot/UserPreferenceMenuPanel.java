@@ -17,8 +17,8 @@ import javax.swing.JPanel;
  * @author Caitlin
  */
 public class UserPreferenceMenuPanel extends JPanel{
-    JButton savePreferences;
-    JLabel statusMessage;
+    private JButton savePreferences;
+    private JLabel statusMessage;
     
     UserPreferenceMenuPanel () {
         super();
@@ -39,4 +39,10 @@ public class UserPreferenceMenuPanel extends JPanel{
     JButton getSavePreferences() {
         return savePreferences;
     }
+
+    public JLabel getStatusMessage() {
+        return statusMessage;
+    }
+    
+    
 }

@@ -17,7 +17,10 @@ import javax.swing.JPanel;
  * @author Caitlin
  */
 public class UserPreferenceInputPanel extends JPanel{
-    JComboBox transportationCombo, distanceCombo, travelInRainCombo, travelInSnowCombo;
+    private JComboBox transportationCombo;
+    private JComboBox distanceCombo;
+    private JComboBox travelInRainCombo; 
+    private JComboBox travelInSnowCombo;
     JLabel transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
     
     UserPreferenceInputPanel() {
@@ -30,9 +33,9 @@ public class UserPreferenceInputPanel extends JPanel{
         transportationCombo = new JComboBox(transportationList);
         add(transportationCombo);
         
-        distanceLabel = addLabel("Max distance will travel in bad weather: ");
+        distanceLabel = addLabel("Max distance will travel in bad weather (in miles): ");
         add(distanceLabel);
-        String[] distanceList = { "1/2 mile", "1 mile", "2 miles", "5 miles"}; 
+        String[] distanceList = { "0.5", "1", "2", "5"}; 
         distanceCombo = new JComboBox(distanceList);
         add(distanceCombo);
         
@@ -58,5 +61,22 @@ public class UserPreferenceInputPanel extends JPanel{
         label.setHorizontalAlignment(JLabel.CENTER);
         return label;
     }
-}
 
+    public JComboBox getTransportationCombo() {
+        return transportationCombo;
+    }
+
+    public JComboBox getDistanceCombo() {
+        return distanceCombo;
+    }
+
+    public JComboBox getTravelInRainCombo() {
+        return travelInRainCombo;
+    }
+
+    public JComboBox getTravelInSnowCombo() {
+        return travelInSnowCombo;
+    }
+    
+    
+}

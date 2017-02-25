@@ -1,6 +1,5 @@
 package weatherornot;
 
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /*
@@ -16,7 +15,6 @@ import javax.swing.JFrame;
 public class UserPreferenceFrame extends JFrame {
     UserPreferenceFrame () {
         super("Change User Preferences");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         UserPreferencePanel upp = new UserPreferencePanel();
         add(upp);
         setSize(800,400);

@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
 /**
@@ -47,7 +46,7 @@ class WeatherPanelBot extends JPanel {
         add(submit);
     }
 
-    public JTextField getZipcodeField() {
+    public JFormattedTextField getZipcodeField() {
         return zipcodeField;
     }
 

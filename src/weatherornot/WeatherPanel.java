@@ -7,56 +7,41 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
  *
  * @author Zhewei
  */
-class WeatherPanel extends JPanel implements ActionListener{
+class WeatherPanel extends JPanel{
     
-    private final MenuPanel mp;
-    private final WeatherInfoPanel wip;
-    private final LocationPanel lp;
+    private final WeatherPanelTop top;
+    private final WeatherPanelMid mid;
+    private final WeatherPanelBot bot;
     
     WeatherPanel() throws IOException, GeoIp2Exception {
         super();
         setLayout(new BorderLayout());
-        mp = new MenuPanel();
-        add(mp,BorderLayout.NORTH);
-        wip = new WeatherInfoPanel();
-        add(wip,BorderLayout.CENTER);
-        lp = new LocationPanel();
-        add(lp, BorderLayout.SOUTH);
-        mp.getRefresh().addActionListener(this);
-        mp.getChangeLocationButton().addActionListener(this);
-        mp.getUserPreferencesButton().addActionListener(this);
-        lp.getSubmit().addActionListener(this);
+        top = new WeatherPanelTop();
+        add(top,BorderLayout.NORTH);
+        mid = new WeatherPanelMid();
+        add(mid,BorderLayout.CENTER);
+        bot = new WeatherPanelBot();
+        add(bot, BorderLayout.SOUTH);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==mp.getRefresh()) {
-            try {
-                wip.updateInfo("");
-            } catch (IOException | GeoIp2Exception ex) {
-                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (e.getSource()==mp.getUserPreferencesButton()) {
-            UserPreferenceFrame upf = new UserPreferenceFrame();
-        }
-        else {
-            try {
-                wip.updateInfo(lp.getZipcodeField().getText());
-            } catch (IOException | GeoIp2Exception ex) {
-                Logger.getLogger(WeatherPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    public WeatherPanelTop getTop() {
+        return top;
     }
+
+    public WeatherPanelMid getMid() {
+        return mid;
+    }
+
+    public WeatherPanelBot getBot() {
+        return bot;
+    }
+    
     
 }

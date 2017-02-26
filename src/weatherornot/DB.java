@@ -17,30 +17,28 @@ import java.sql.Statement;
  */
 public class DB {
     
-    public static void main(String args[]) throws ClassNotFoundException, SQLException {
-        // Initialize the database
-        Class.forName("org.sqlite.JDBC");
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:WeatherOrNot.db");
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
-        statement.executeUpdate("drop table if exists preference");
-        statement.executeUpdate("create table preference (id integer, transportation text, distance text, rain text, snow text)");
-        execute("insert into preference values(1, 'Car', '0.5', 'Yes', 'Yes')");
-    }
+    private Connection connection;
+    private Statement statement;
     
-    public static void execute(String sql) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:WeatherOrNot.db");
-        Statement statement = connection.createStatement();
+    DB() throws ClassNotFoundException, SQLException {
+        Class.forName("org.sqlite.JDBC");
+        connection = DriverManager.getConnection("jdbc:sqlite:WeatherOrNot.db");
+        statement = connection.createStatement();
         statement.setQueryTimeout(30);
+    }
+
+    public void insertSql(String sql) throws SQLException {
         statement.executeUpdate(sql);
     }
     
-    public static ResultSet getRows(String sql) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:WeatherOrNot.db");
-        Statement statement = connection.createStatement();
-        statement.setQueryTimeout(30);
+    public ResultSet getRows(String sql) throws SQLException {
         ResultSet rs = statement.executeQuery(sql);
         return rs;
     }
-
+    
+    public static void main(String arg[]) throws ClassNotFoundException, SQLException {
+        DB database = new DB();
+        database.insertSql("drop table if exists preference");
+        database.insertSql("create table preference (id integer, transportation text, distance text, rain text, snow text)");
+    }
 }

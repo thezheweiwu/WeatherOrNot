@@ -5,13 +5,12 @@
  */
 package weatherornot;
 
-import javax.swing.JFrame;
 
 /**
  *
  * @author Zhewei
  */
-public class UserPreferenceFrame extends JFrame {
+public class UserPreferenceFrame extends WFrame {
     
     private UserPreferencePanel upp;
     

@@ -7,15 +7,13 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  *
  * @author Zhewei
  */
-public class WeatherFrame extends JFrame {
+public class WeatherFrame extends WFrame {
     
     private WeatherPanel wp;
     
@@ -25,7 +23,6 @@ public class WeatherFrame extends JFrame {
         add(wp);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800,400);
-        setIconImage(new ImageIcon("icon.png").getImage());
         setResizable(false);
         setVisible(true);
     }

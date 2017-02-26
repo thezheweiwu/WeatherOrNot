@@ -17,8 +17,8 @@ import java.sql.Statement;
  */
 public class DB {
     
-    private Connection connection;
-    private Statement statement;
+    private final Connection connection;
+    private final Statement statement;
     
     DB() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
@@ -39,6 +39,6 @@ public class DB {
     public static void main(String arg[]) throws ClassNotFoundException, SQLException {
         DB database = new DB();
         database.insertSql("drop table if exists preference");
-        database.insertSql("create table preference (id integer, transportation text, distance text, rain text, snow text)");
+        database.insertSql("create table preference (transportation text, distance text, rain text, snow text)");
     }
 }

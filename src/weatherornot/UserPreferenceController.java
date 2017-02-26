@@ -31,7 +31,7 @@ public class UserPreferenceController implements ActionListener{
         Object obj = ae.getSource();
         if (obj==upv.getWpf().getUpp().getBot().getSavePreferences()) {
             try {
-                String sql = "insert into preference values(999, '" + upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "')";
+                String sql = "insert into preference values('" + upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "')";
                 database.insertSql(sql);
                 upv.getWpf().getUpp().getBot().getStatusMessage().setVisible(true);
             } catch (SQLException ex) {

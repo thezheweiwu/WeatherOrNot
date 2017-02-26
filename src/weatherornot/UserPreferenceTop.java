@@ -23,7 +23,7 @@ class UserPreferenceTop extends JPanel {
     UserPreferenceTop() {
         super();
         setBackground(new Color(150,192,206));
-        pageTitle = newLabel("user Preferences");
+        pageTitle = newLabel("User Preferences");
         add(pageTitle);
         directions = newLabel("Select or change the following user preferences: ");
         add(directions);

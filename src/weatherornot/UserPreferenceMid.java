@@ -17,10 +17,10 @@ import javax.swing.JPanel;
  * @author Zhewei
  */
 class UserPreferenceMid extends JPanel {
-    private JComboBox transportation;
-    private JComboBox distance;
-    private JComboBox travelInRain;
-    private JComboBox travelInSnow;
+    private WComboBox transportation;
+    private WComboBox distance;
+    private WComboBox travelInRain;
+    private WComboBox travelInSnow;
     private JLabel transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
     
     UserPreferenceMid () {
@@ -30,25 +30,25 @@ class UserPreferenceMid extends JPanel {
         transportationLabel = addLabel("Mode of Transportation: ");
         add(transportationLabel);
         String[] transportationList = { "Car", "Bike", "Walking", "Bus", "Horse" }; 
-        transportation = new JComboBox(transportationList);
+        transportation = new WComboBox(transportationList);
         add(transportation);
         
         distanceLabel = addLabel("Max distance will travel in bad weather (in miles): ");
         add(distanceLabel);
         String[] distanceList = { "0.5", "1", "2", "5"}; 
-        distance = new JComboBox(distanceList);
+        distance = new WComboBox(distanceList);
         add(distance);
         
         travelInRainLabel = addLabel("Willing to Travel in Rain: ");
         add(travelInRainLabel);
         String[] rain = { "Yes", "No"}; 
-        travelInRain = new JComboBox(rain);
+        travelInRain = new WComboBox(rain);
         add(travelInRain);
         
         travelInSnowLabel = addLabel("Willing to Travel in Snow: ");
         add(travelInSnowLabel);
         String[] snow = { "Yes", "No"}; 
-        travelInSnow = new JComboBox(snow);
+        travelInSnow = new WComboBox(snow);
         add(travelInSnow);
         
         setLayout(new GridLayout(4,2));

@@ -26,6 +26,7 @@ class WeatherController implements ActionListener {
     private WeatherModel model;
     private WeatherView view;
     private UserPreferenceController upc;
+    private RecommendationFrame rf; //change to controller after we figure a recomm. formula
 
     WeatherController(WeatherModel model, WeatherView view) throws IOException, GeoIp2Exception {
         this.model = model;
@@ -33,11 +34,12 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getTop().getRefresh().addActionListener(this);
         view.getWf().getWp().getTop().getUserPreferencesButton().addActionListener(this);
         view.getWf().getWp().getBot().getSubmit().addActionListener(this);
+        view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
         updateInfo("");
     }
 
     private void updateInfo(String zipcode) throws IOException, GeoIp2Exception {
-        if (zipcode != "") {
+        if (!zipcode.equals("")) {
             model.setLocation(new Location(zipcode));
         } else {
             model.setLocation(new Location());
@@ -85,6 +87,9 @@ class WeatherController implements ActionListener {
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
+                rf = new RecommendationFrame();
         }
         
     }

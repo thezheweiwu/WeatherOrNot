@@ -34,6 +34,7 @@ public class UserPreferenceController implements ActionListener{
                 String sql = "insert into preference values('" + upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', '" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "')";
                 database.insertSql(sql);
                 upv.getWpf().getUpp().getBot().getStatusMessage().setVisible(true);
+                System.out.println("DB updated");
             } catch (SQLException ex) {
                 Logger.getLogger(UserPreferenceController.class.getName()).log(Level.SEVERE, null, ex);
             }

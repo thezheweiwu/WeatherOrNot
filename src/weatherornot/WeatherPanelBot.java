@@ -34,9 +34,9 @@ class WeatherPanelBot extends JPanel {
         NumberFormat longFormat = NumberFormat.getIntegerInstance();
         longFormat.setGroupingUsed(false);
         NumberFormatter numberFormatter = new NumberFormatter(longFormat);
-        numberFormatter.setAllowsInvalid(false); //this is the key!!
+        numberFormatter.setAllowsInvalid(false); //only allows numbers to be inputted
         zipcodeField = new JFormattedTextField(numberFormatter);
-        zipcodeField.setColumns(5);
+        zipcodeField.setColumns(5); // makes the textfield 5 characters long
         zipcodeField.setFont(new Font("SansSerif", Font.BOLD, 16));
         zipcodeField.setForeground(new Color(116, 130, 143));
         add(zipcodeField);

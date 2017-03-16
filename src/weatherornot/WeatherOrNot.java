@@ -16,6 +16,8 @@ public class WeatherOrNot {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
+     * @throws com.maxmind.geoip2.exception.GeoIp2Exception
      */
     public static void main(String[] args) throws IOException, GeoIp2Exception {
         WeatherModel model = new WeatherModel();

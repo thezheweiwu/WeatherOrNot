@@ -26,13 +26,12 @@ class WeatherController implements ActionListener {
     private WeatherModel model;
     private WeatherView view;
     private UserPreferenceController upc;
-    private RecommendationFrame rf; //change to controller after we figure a recomm. formula
+    private RecommendationController rc; //change to controller after we figure a recomm. formula
 
     WeatherController(WeatherModel model, WeatherView view) throws IOException, GeoIp2Exception {
         this.model = model;
         this.view = view;
         view.getWf().getWp().getTop().getRefresh().addActionListener(this);
-        view.getWf().getWp().getTop().getUserPreferencesButton().addActionListener(this);
         view.getWf().getWp().getBot().getSubmit().addActionListener(this);
         view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
         updateInfo("");
@@ -81,15 +80,12 @@ class WeatherController implements ActionListener {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (obj == view.getWf().getWp().getTop().getUserPreferencesButton()) {
+        if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
             try {
-                upc = new UserPreferenceController();
+                rc = new RecommendationController();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
-                rf = new RecommendationFrame();
         }
         
     }

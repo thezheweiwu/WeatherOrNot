@@ -17,7 +17,6 @@ class WeatherPanelTop extends JPanel {
 
     private final JButton refreshButton;
     private final JButton changeLocationButton;
-    private final JButton userPreferencesButton;
     private final JButton getRecommendationButton;
 
     WeatherPanelTop() {
@@ -29,8 +28,6 @@ class WeatherPanelTop extends JPanel {
         add(changeLocationButton);
         getRecommendationButton = addButton("Get Recommendation");
         add(getRecommendationButton);
-        userPreferencesButton = addButton("Change User Preferences");
-        add(userPreferencesButton);
     }
 
     public JButton getRefresh() {
@@ -39,10 +36,6 @@ class WeatherPanelTop extends JPanel {
 
     public JButton getChangeLocationButton() {
         return changeLocationButton;
-    }
-
-    public JButton getUserPreferencesButton() {
-        return userPreferencesButton;
     }
 
     private JButton addButton(String text) {

@@ -18,7 +18,8 @@ import java.util.logging.Logger;
 public class RecommendationController implements ActionListener{
     
     private RecommendationView rv;
-    UserPreferenceController upc;
+    private UserPreferenceController upc;
+    private UserProfile up;
      
     RecommendationController() throws ClassNotFoundException, SQLException {
         rv = new RecommendationView();

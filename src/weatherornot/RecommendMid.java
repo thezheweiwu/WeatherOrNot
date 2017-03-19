@@ -19,22 +19,16 @@ import javax.swing.event.ChangeListener;
  *
  * @author Caitlin
  */
-public class RecommendMid extends JPanel implements ChangeListener{
-    JLabel placeholderText;
-    JSlider recommendationSlide;
+public class RecommendMid extends JPanel{
+    private RecommendMidLeft left;
+    private RecommendMidRight right;
     
-    RecommendMid () {
+    RecommendMid (RecommendMidLeft left, RecommendMidRight right) {
     super();
         setBackground(new Color(116,130,143));
-        placeholderText = addLabel("80%");
-        recommendationSlide = new JSlider();
-        recommendationSlide.setValue(80);
-        recommendationSlide.addChangeListener(this);
-        Dimension d = recommendationSlide.getPreferredSize();
-        recommendationSlide.setPreferredSize(new Dimension(d.width+250,d.height));
-        recommendationSlide.setValueIsAdjusting(false);
-        add(recommendationSlide);
-        add(placeholderText);
+        this.left = left;
+        this.right = right;
+        
     }
     
      JLabel addLabel(String in) {
@@ -45,10 +39,13 @@ public class RecommendMid extends JPanel implements ChangeListener{
         return label;
     }
 
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        if (e.getSource()==recommendationSlide) {
-            placeholderText.setText((Integer.toString(recommendationSlide.getValue())));
-        }
+    public RecommendMidLeft getLeft() {
+        return left;
     }
+
+    public RecommendMidRight getRight() {
+        return right;
+    }
+     
+     
 }

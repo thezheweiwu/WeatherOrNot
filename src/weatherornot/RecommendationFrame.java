@@ -11,7 +11,7 @@ package weatherornot;
  */
 public class RecommendationFrame extends WFrame{
     
-    RecommendationPanel rp;
+    private RecommendationPanel rp;
     
     public RecommendationFrame() {
         super("User Recommendations");
@@ -22,5 +22,10 @@ public class RecommendationFrame extends WFrame{
         rp = new RecommendationPanel();
         add(rp);
     }
+
+    public RecommendationPanel getRp() {
+        return rp;
+    }
+    
     
 }

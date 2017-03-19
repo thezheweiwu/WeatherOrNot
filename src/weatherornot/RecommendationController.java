@@ -23,14 +23,14 @@ public class RecommendationController implements ActionListener{
      
     RecommendationController() throws ClassNotFoundException, SQLException {
         rv = new RecommendationView();
-        rv.getRf().rp.rb.getChangeUserPreferencesButton().addActionListener(this);
-        //rv.getRf().rp.rb.getRefreshButton();
+        rv.getRf().getRp().getRb().getChangeUserPreferencesButton().addActionListener(this);
+        rv.getRf().getRp().getRb().getRefreshButton();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-        if (obj== rv.getRf().rp.rb.getChangeUserPreferencesButton()) {
+        if (obj== rv.getRf().getRp().getRb().getChangeUserPreferencesButton()) {
             try {
                 upc = new UserPreferenceController();
             } catch (ClassNotFoundException | SQLException ex) {

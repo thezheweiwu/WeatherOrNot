@@ -7,6 +7,7 @@ package weatherornot;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -28,7 +29,12 @@ public class RecommendationController implements ActionListener{
         up = new ArrayList<>();
         DB data = new DB();
         up.add(new UserProfile());
-        up.add(new UserProfile(data.getRows("SELECT * FROM preference WHERE id = 1")));
+        ResultSet results = data.getRows("SELECT * FROM preference WHERE id = 1");
+        while(results.next()) {
+            if (!results.getString("transportation").equals("not initialized")) {
+                up.add(new UserProfile(data.getRows("SELECT * FROM preference WHERE id = 1")));
+            }
+        }
         options = new ArrayList<>();
         for (UserProfile item: up) {
             options.add(item.toString());

@@ -50,7 +50,7 @@ class WeatherModel {
     
     public double getMaxPreciToday() {
         double num = 0;
-        for (int i = 0; i<24; i++) {
+        for (int i = 0; i<4; i++) {
             if (weather.getHourly().get("data").asArray().get(i).asObject().get("precipProbability").asDouble()>num) {
                 num = weather.getHourly().get("data").asArray().get(i).asObject().get("precipProbability").asDouble();
             }

@@ -12,12 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author Caitlin
  */
-public class RecommendationController implements ActionListener{
+public class RecommendationController implements ActionListener, ChangeListener{
     
     private RecommendationView rv;
     private UserPreferenceController upc;
@@ -45,6 +47,7 @@ public class RecommendationController implements ActionListener{
         rv.getRf().getRp().getRm().getRight().optionsVisible();
         rv.getRf().getRp().getRb().getChangeUserPreferencesButton().addActionListener(this);
         rv.getRf().getRp().getRm().getRight().getGetButton().addActionListener(this);
+        rv.getRf().getRp().getRm().getLeft().getPercentageSlide().addChangeListener(this);
     }
 
     @Override
@@ -73,7 +76,11 @@ public class RecommendationController implements ActionListener{
     // implement this...
     private int getRecommendation (double distance, UserProfile profile) {
         // which transporation mode is it?
-        if (profile.getTransportationMode()=="Car" || profile.getTransportationMode()=="Horse") {
+        if (model.getWeather().getCurrently().get("temperature").asDouble()<0) {
+            return 0;
+        }
+        else {
+            if (profile.getTransportationMode()=="Car" || profile.getTransportationMode()=="Horse") {
             // how fast is the wind going?
             if (model.getWeather().getCurrently().get("windSpeed").asDouble()>50) {
                 return 0;
@@ -83,35 +90,35 @@ public class RecommendationController implements ActionListener{
                 if (distance<10) {
                     double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
                     // how likely is it to precipitate during the travel?
-                    if (preciProb>80) {
+                    if (preciProb>0.80) {
                         // if it is likely to precipitate, is the distance within the tolerable range
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
                 else if(distance<60) {
                     double preciProb = model.getMaxPreciHourly();
-                    if (preciProb>80) {
+                    if (preciProb>0.80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
                 else {
                     double preciProb = model.getMaxPreciToday();
-                    if (preciProb>80) {
+                    if (preciProb>.80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
@@ -133,7 +140,7 @@ public class RecommendationController implements ActionListener{
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
@@ -144,7 +151,7 @@ public class RecommendationController implements ActionListener{
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
@@ -155,12 +162,21 @@ public class RecommendationController implements ActionListener{
                             return 0;
                         }
                         else {
-                            return (int)(distance/profile.getMaxDistance()*100);
+                            return (int)((1-distance/profile.getMaxDistance())*100);
                         }
                     }
                 }
             }
         }
+        }
         return 100;
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent ce) {
+        Object obj = ce.getSource();
+        if (obj==rv.getRf().getRp().getRm().getLeft().getPercentageSlide()) {
+            rv.getRf().getRp().getRm().getLeft().getFactorsLabel().setText(Integer.toString(rv.getRf().getRp().getRm().getLeft().getPercentageSlide().getValue()));
+        }
     }
 }

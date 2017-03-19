@@ -16,10 +16,10 @@ import java.sql.Statement;
  * @author Zhewei
  */
 public class DB {
-    
+
     private final Connection connection;
     private final Statement statement;
-    
+
     DB() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         connection = DriverManager.getConnection("jdbc:sqlite:WeatherOrNot.db");
@@ -30,12 +30,12 @@ public class DB {
     public void insertSql(String sql) throws SQLException {
         statement.executeUpdate(sql);
     }
-    
+
     public ResultSet getRows(String sql) throws SQLException {
         ResultSet rs = statement.executeQuery(sql);
         return rs;
     }
-    
+
     public static void main(String arg[]) throws ClassNotFoundException, SQLException {
         DB database = new DB();
         database.insertSql("drop table if exists preference");

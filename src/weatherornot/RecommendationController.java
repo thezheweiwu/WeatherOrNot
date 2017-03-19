@@ -50,9 +50,13 @@ public class RecommendationController implements ActionListener{
             }
         }
         else if (obj==rv.getRf().getRp().getRm().getRight().getGetButton()) {
-            int num = Integer.parseInt(rv.getRf().getRp().getRm().getRight().getHowFar().getText());
+            int num = getRecommendation(Integer.parseInt(rv.getRf().getRp().getRm().getRight().getHowFar().getText()), up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
             rv.getRf().getRp().getRm().getLeft().getPercentageLabel().setText(Integer.toString(num));
             rv.getRf().getRp().getRm().getLeft().getPercentageSlide().setValue(num);
         }
+    }
+    // implement this...
+    private int getRecommendation (int distance, UserProfile profile) {
+        return 20;
     }
 }

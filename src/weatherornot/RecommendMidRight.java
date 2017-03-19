@@ -49,4 +49,8 @@ public class RecommendMidRight extends JPanel {
         return howFar;
     }
     
+    public JComboBox getPreferences() {
+        return preferences;
+    }
+    
 }

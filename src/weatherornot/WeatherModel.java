@@ -37,5 +37,6 @@ class WeatherModel {
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    
+    
 }

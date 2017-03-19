@@ -23,6 +23,7 @@ class WeatherPanelBot extends JPanel {
     private final JLabel directions;
     private final JFormattedTextField zipcodeField;
     private final JButton submit;
+    private final JButton saveLocation;
 
     WeatherPanelBot() {
         super();
@@ -44,6 +45,8 @@ class WeatherPanelBot extends JPanel {
         submit.setBackground(new Color(194, 91, 86));
         submit.setForeground(Color.white);
         add(submit);
+        saveLocation = new JButton("Save Location");
+        add(saveLocation);
     }
 
     public JFormattedTextField getZipcodeField() {
@@ -54,4 +57,7 @@ class WeatherPanelBot extends JPanel {
         return submit;
     }
 
+    public JButton getSaveLocation() {
+        return saveLocation;
+    }
 }

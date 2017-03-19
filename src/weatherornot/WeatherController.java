@@ -34,6 +34,7 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getTop().getRefresh().addActionListener(this);
         view.getWf().getWp().getBot().getSubmit().addActionListener(this);
         view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
+        view.getWf().getWp().getBot().getSaveLocation().addActionListener(this);
         updateInfo("");
     }
 
@@ -84,6 +85,17 @@ class WeatherController implements ActionListener {
             try {
                 rc = new RecommendationController(new RecommendationView());
             } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (obj== view.getWf().getWp().getBot().getSaveLocation()) {
+            try {
+                DB data = new DB();
+                String sql = "INSERT INTO location (city, state, country, longitude, latitude) values ('"+model.getLocation().getCity()+"', '"+model.getLocation().getState()+"', '"+model.getLocation().getCountry()+"', '"+model.getLocation().getLongitude()+"', '"+model.getLocation().getLatitude()+"')";
+                data.insertSql(sql);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

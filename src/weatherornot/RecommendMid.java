@@ -28,7 +28,8 @@ public class RecommendMid extends JPanel{
         setBackground(new Color(116,130,143));
         this.left = left;
         this.right = right;
-        
+        add(left);
+        add(right);
     }
     
      JLabel addLabel(String in) {

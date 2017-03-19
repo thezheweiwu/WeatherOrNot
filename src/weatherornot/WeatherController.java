@@ -82,7 +82,7 @@ class WeatherController implements ActionListener {
         }
         if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
             try {
-                rc = new RecommendationController();
+                rc = new RecommendationController(new RecommendationView());
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }

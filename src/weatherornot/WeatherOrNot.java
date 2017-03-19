@@ -26,7 +26,7 @@ public class WeatherOrNot {
         WeatherView view = new WeatherView(model);
         WeatherController controller = new WeatherController(model, view); 
 //        DB data = new DB();
-//        ResultSet rs = data.getRows("SELECT * FROM preference");
+//        ResultSet rs = data.getRows("SELECT * FROM preference WHERE id = 1");
 //        while(rs.next())
 //      {
 //        // read the result set

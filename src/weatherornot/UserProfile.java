@@ -5,16 +5,19 @@
  */
 package weatherornot;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Zhewei
  */
 public class UserProfile {
     
-    String transportationMode;
-    double maxDistance;
-    boolean inRain;
-    boolean inSnow;
+    private String transportationMode;
+    private double maxDistance;
+    private boolean inRain;
+    private boolean inSnow;
     
     UserProfile() {
         transportationMode = "Walking";
@@ -23,11 +26,32 @@ public class UserProfile {
         inSnow = false;
     }
     
-    UserProfile(String transportationMode, double maxDistance, boolean inRain, boolean inSnow) {
-        this.transportationMode = transportationMode;
-        this.maxDistance = maxDistance;
-        this.inRain = inRain;
-        this.inSnow = inSnow;
+
+    UserProfile(ResultSet rows) throws SQLException {
+        while(rows.next()) {
+            transportationMode = rows.getString("transportation");
+            maxDistance = Double.parseDouble(rows.getString("distance"));
+            if (rows.getString("rain").equals("Yes")) {
+                inRain = true;
+            }
+            else {
+                inRain = false;
+            }
+            if (rows.getString("snow").equals("Yes")) {
+                inSnow = true;
+            }
+            else {
+                inSnow = false;
+            }
+        }
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public String toString() {
+        return transportationMode + ", " + maxDistance + ", " + inRain + ", " +inSnow;
     }
 }
 

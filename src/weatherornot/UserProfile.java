@@ -51,7 +51,25 @@ public class UserProfile {
      * @return
      */
     public String toString() {
-        return transportationMode + ", " + maxDistance + ", " + inRain + ", " +inSnow;
+        return transportationMode + ", " + maxDistance + ", inRain{" + inRain + "}, inSnow{" +inSnow+"}";
     }
+
+    public String getTransportationMode() {
+        return transportationMode;
+    }
+
+    public double getMaxDistance() {
+        return maxDistance;
+    }
+
+    public boolean isInRain() {
+        return inRain;
+    }
+
+    public boolean isInSnow() {
+        return inSnow;
+    }
+    
+    
 }
 

@@ -1,13 +1,11 @@
 package weatherornot;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,6 +26,7 @@ public class RecommendMid extends JPanel{
         setBackground(new Color(116,130,143));
         this.left = left;
         this.right = right;
+        setLayout(new GridLayout(1,2));
         add(left);
         add(right);
     }

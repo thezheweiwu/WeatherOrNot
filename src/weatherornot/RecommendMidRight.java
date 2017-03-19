@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,12 +22,15 @@ public class RecommendMidRight extends JPanel {
     private JComboBox preferences;
     private JButton getButton;
     private JTextField howFar;
+    private JLabel whichProfile;
     
     RecommendMidRight () {
         setLayout(new BorderLayout());
-        howFar = new JTextField();
+        howFar = new JTextField("How far away is the destination?");
         preferences = new JComboBox();
         getButton = new JButton("Get Recommendation");
+        whichProfile = new JLabel("Which profile?   ");
+        add(whichProfile, BorderLayout.WEST);
     }
     
     public void setOptions(ArrayList<String> options) {

@@ -5,6 +5,7 @@
  */
 package weatherornot;
 
+import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -16,22 +17,29 @@ import javax.swing.JSlider;
 public class RecommendMidLeft extends JPanel {
     
     private JSlider percentageSlide;
-    private JLabel percentageLabel;
+    private JLabel statusLabel;
+    private JLabel factorsLabel;
     
     RecommendMidLeft() {
+        super();
+        setLayout(new BorderLayout());
         percentageSlide = new JSlider();
-        percentageLabel = new JLabel("test");
-        add(percentageSlide);
-        add(percentageLabel);
+        statusLabel = new JLabel("Press get recommendation to continue.");
+        factorsLabel = new JLabel();
+        add(factorsLabel, BorderLayout.CENTER);
+        add(percentageSlide, BorderLayout.SOUTH);
+        add(statusLabel, BorderLayout.NORTH);
     }
 
     public JSlider getPercentageSlide() {
         return percentageSlide;
     }
 
-    public JLabel getPercentageLabel() {
-        return percentageLabel;
+    public JLabel getStatusLabel() {
+        return statusLabel;
     }
     
-    
+    public JLabel getFactorsLabel() {
+        return factorsLabel;
+    }
 }

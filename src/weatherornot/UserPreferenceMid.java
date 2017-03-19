@@ -35,7 +35,7 @@ class UserPreferenceMid extends JPanel {
         
         distanceLabel = addLabel("Max distance will travel in bad weather (in miles): ");
         add(distanceLabel);
-        String[] distanceList = { "0.5", "1", "2", "5"}; 
+        String[] distanceList = { "5", "10", "20", "50"}; 
         distance = new WComboBox(distanceList);
         add(distance);
         

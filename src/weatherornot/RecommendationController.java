@@ -23,9 +23,11 @@ public class RecommendationController implements ActionListener{
     private UserPreferenceController upc;
     private ArrayList<UserProfile> up;
     private ArrayList<String> options;
+    private WeatherModel model;
      
-    RecommendationController(RecommendationView rv) throws ClassNotFoundException, SQLException {
+    RecommendationController(RecommendationView rv, WeatherModel model) throws ClassNotFoundException, SQLException {
         this.rv = rv;
+        this.model = model;
         up = new ArrayList<>();
         DB data = new DB();
         up.add(new UserProfile());
@@ -56,22 +58,52 @@ public class RecommendationController implements ActionListener{
             }
         }
         else if (obj==rv.getRf().getRp().getRm().getRight().getGetButton()) {
-            int num = getRecommendation(Integer.parseInt(rv.getRf().getRp().getRm().getRight().getHowFar().getText()), up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
-            rv.getRf().getRp().getRm().getLeft().getPercentageLabel().setText(Integer.toString(num));
+            int num = getRecommendation(Double.valueOf(rv.getRf().getRp().getRm().getRight().getHowFar().getText()), up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
+            rv.getRf().getRp().getRm().getLeft().getFactorsLabel().setText(Integer.toString(num));
             rv.getRf().getRp().getRm().getLeft().getPercentageSlide().setValue(num);
         }
     }
     // implement this...
-    private int getRecommendation (int distance, UserProfile profile) {
-        if (distance<10) {
-            //get minutely weather
-        }
-        else if (distance<60) {
-            //get hourly weather
+    private int getRecommendation (double distance, UserProfile profile) {
+        // which transporation mode is it?
+        if (profile.getTransportationMode()=="Car" || profile.getTransportationMode()=="Horse") {
+            // how fast is the wind going?
+            if (model.getWeather().getCurrently().get("windSpeed").asDouble()>25) {
+                return 0;
+            }
+            else {
+                // how far is the destination?
+                if (distance<10) {
+                    double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
+                    // how likely is it to precipitate during the travel?
+                    if (preciProb>80) {
+                        // if it is likely to precipitate, is the distance within the tolerable range?
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                    }
+                }
+                else if(distance<60) {
+                    double preciProb = model.getWeather().getHourly().get("precipProbability").asDouble();
+                    if (preciProb>80) {
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                    }
+                }
+                else {
+                    double preciProb = model.getWeather().getDaily().get("precipProbability").asDouble();
+                    if (preciProb>80) {
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                    }
+                }
+            }
         }
         else {
-            //get daily weather
+            
         }
-        return 0;
+        return 100;
     }
 }

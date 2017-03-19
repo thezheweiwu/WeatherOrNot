@@ -38,5 +38,24 @@ class WeatherModel {
         this.location = location;
     }
     
+    public double getMaxPreciHourly() {
+        double num = 0;
+        for (int i = 0; i<weather.getMinutely().get("data").asArray().size(); i++) {
+            if (weather.getMinutely().get("data").asArray().get(i).asObject().get("precipProbability").asDouble()>num) {
+                num = weather.getMinutely().get("data").asArray().get(i).asObject().get("precipProbability").asDouble();
+            }
+        }
+        return num;
+    }
+    
+    public double getMaxPreciToday() {
+        double num = 0;
+        for (int i = 0; i<24; i++) {
+            if (weather.getHourly().get("data").asArray().get(i).asObject().get("precipProbability").asDouble()>num) {
+                num = weather.getHourly().get("data").asArray().get(i).asObject().get("precipProbability").asDouble();
+            }
+        }
+        return num;
+    }
     
 }

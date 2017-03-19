@@ -57,6 +57,7 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getMid().getRealFeelLabel().setText("Real Feel: " + model.getWeather().getCurrently().get("apparentTemperature") + model.getLocation().getWeatherUnit());
         view.getWf().getWp().getMid().getHumidityLabel().setText("Humidity: " + String.format("%.0f", Double.parseDouble(model.getWeather().getCurrently().get("humidity").toString()) * 100) + "%");
         view.getWf().getWp().getMid().getWindSpeedLabel().setText("Wind Speed: " + model.getWeather().getCurrently().get("windSpeed").toString() + " " + model.getLocation().getWindUnit());
+        System.out.println(model.getWeather().getHourly().toString());
     }
 
     @Override

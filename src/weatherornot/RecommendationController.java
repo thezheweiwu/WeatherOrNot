@@ -94,7 +94,7 @@ public class RecommendationController implements ActionListener{
                     }
                 }
                 else if(distance<60) {
-                    double preciProb = model.getWeather().getHourly().get("precipProbability").asDouble();
+                    double preciProb = model.getMaxPreciHourly();
                     if (preciProb>80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
@@ -105,7 +105,7 @@ public class RecommendationController implements ActionListener{
                     }
                 }
                 else {
-                    double preciProb = model.getWeather().getDaily().get("precipProbability").asDouble();
+                    double preciProb = model.getMaxPreciToday();
                     if (preciProb>80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
@@ -138,7 +138,7 @@ public class RecommendationController implements ActionListener{
                     }
                 }
                 else if(distance<60) {
-                    double preciProb = model.getWeather().getHourly().get("precipProbability").asDouble();
+                    double preciProb = model.getMaxPreciHourly();
                     if (preciProb>80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
@@ -149,7 +149,7 @@ public class RecommendationController implements ActionListener{
                     }
                 }
                 else {
-                    double preciProb = model.getWeather().getDaily().get("precipProbability").asDouble();
+                    double preciProb = model.getMaxPreciToday();
                     if (preciProb>80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;

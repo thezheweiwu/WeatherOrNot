@@ -39,6 +39,7 @@ public class DB {
     public static void main(String arg[]) throws ClassNotFoundException, SQLException {
         DB database = new DB();
         database.insertSql("drop table if exists preference");
-        database.insertSql("create table preference (transportation text, distance text, rain text, snow text)");
+        database.insertSql("create table preference (id integer, transportation text, distance text, rain text, snow text)");
+        database.insertSql("insert into preference (id, transportation, distance, rain, snow) values (1, 'no', 'no', 'no', 'no')");
     }
 }

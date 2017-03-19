@@ -15,25 +15,19 @@ public class UserProfile {
     double maxDistance;
     boolean inRain;
     boolean inSnow;
-    Location from;
-    Location to;
     
-    UserProfile(Location from, Location to) {
+    UserProfile() {
         transportationMode = "Walking";
         maxDistance = 1.0;
         inRain = true;
         inSnow = false;
-        this.from = from;
-        this.to = to;
     }
     
-    UserProfile(String transportationMode, double maxDistance, boolean inRain, boolean inSnow, Location from, Location to) {
+    UserProfile(String transportationMode, double maxDistance, boolean inRain, boolean inSnow) {
         this.transportationMode = transportationMode;
         this.maxDistance = maxDistance;
         this.inRain = inRain;
         this.inSnow = inSnow;
-        this.from = from;
-        this.to = to;
     }
 }
 

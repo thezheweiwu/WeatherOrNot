@@ -58,7 +58,14 @@ public class RecommendationController implements ActionListener{
             }
         }
         else if (obj==rv.getRf().getRp().getRm().getRight().getGetButton()) {
-            int num = getRecommendation(Double.valueOf(rv.getRf().getRp().getRm().getRight().getHowFar().getText()), up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
+            Double value;
+            try {
+                value = Double.valueOf(rv.getRf().getRp().getRm().getRight().getHowFar().getText());
+            }
+            catch (NumberFormatException exception) {
+                value = 0.0;
+            }
+            int num = getRecommendation(value, up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
             rv.getRf().getRp().getRm().getLeft().getFactorsLabel().setText(Integer.toString(num));
             rv.getRf().getRp().getRm().getLeft().getPercentageSlide().setValue(num);
         }
@@ -67,6 +74,50 @@ public class RecommendationController implements ActionListener{
     private int getRecommendation (double distance, UserProfile profile) {
         // which transporation mode is it?
         if (profile.getTransportationMode()=="Car" || profile.getTransportationMode()=="Horse") {
+            // how fast is the wind going?
+            if (model.getWeather().getCurrently().get("windSpeed").asDouble()>50) {
+                return 0;
+            }
+            else {
+                // how far is the destination?
+                if (distance<10) {
+                    double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
+                    // how likely is it to precipitate during the travel?
+                    if (preciProb>80) {
+                        // if it is likely to precipitate, is the distance within the tolerable range
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
+                        }
+                    }
+                }
+                else if(distance<60) {
+                    double preciProb = model.getWeather().getHourly().get("precipProbability").asDouble();
+                    if (preciProb>80) {
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
+                        }
+                    }
+                }
+                else {
+                    double preciProb = model.getWeather().getDaily().get("precipProbability").asDouble();
+                    if (preciProb>80) {
+                        if (distance>profile.getMaxDistance()) {
+                            return 0;
+                        }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
+                        }
+                    }
+                }
+            }
+        }
+        else {
             // how fast is the wind going?
             if (model.getWeather().getCurrently().get("windSpeed").asDouble()>25) {
                 return 0;
@@ -77,9 +128,12 @@ public class RecommendationController implements ActionListener{
                     double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
                     // how likely is it to precipitate during the travel?
                     if (preciProb>80) {
-                        // if it is likely to precipitate, is the distance within the tolerable range?
+                        // if it is likely to precipitate, is the distance within the tolerable range
                         if (distance>profile.getMaxDistance()) {
                             return 0;
+                        }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
                         }
                     }
                 }
@@ -89,6 +143,9 @@ public class RecommendationController implements ActionListener{
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
+                        }
                     }
                 }
                 else {
@@ -97,12 +154,12 @@ public class RecommendationController implements ActionListener{
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
+                        else {
+                            return (int)(distance/profile.getMaxDistance()*100);
+                        }
                     }
                 }
             }
-        }
-        else {
-            
         }
         return 100;
     }

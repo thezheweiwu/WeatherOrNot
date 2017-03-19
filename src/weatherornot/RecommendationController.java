@@ -63,6 +63,15 @@ public class RecommendationController implements ActionListener{
     }
     // implement this...
     private int getRecommendation (int distance, UserProfile profile) {
-        return 20;
+        if (distance<10) {
+            //get minutely weather
+        }
+        else if (distance<60) {
+            //get hourly weather
+        }
+        else {
+            //get daily weather
+        }
+        return 0;
     }
 }

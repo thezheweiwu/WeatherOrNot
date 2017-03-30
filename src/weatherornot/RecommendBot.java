@@ -26,7 +26,7 @@ public class RecommendBot extends JPanel{
         changeUserPreferencesButton.setForeground(Color.white);
         add(changeUserPreferencesButton);
         
-        refreshButton = new JButton("Refresh Recommendation");
+        refreshButton = new JButton("Refresh Profile");
         refreshButton.setBackground(new Color(194, 91, 86));
         refreshButton.setForeground(Color.white);
         add(refreshButton);

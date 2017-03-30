@@ -46,6 +46,8 @@ class WeatherPanelBot extends JPanel {
         submit.setForeground(Color.white);
         add(submit);
         saveLocation = new JButton("Save Location");
+        saveLocation.setBackground(new Color(194, 91, 86));
+        saveLocation.setForeground(Color.white);
         add(saveLocation);
     }
 

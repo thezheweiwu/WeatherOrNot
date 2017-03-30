@@ -6,6 +6,7 @@
 package weatherornot;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +26,7 @@ public class RecommendMidLeft extends JPanel {
         super();
         setLayout(new BorderLayout());
         percentageSlide = new JSlider();
+        percentageSlide.setPreferredSize(new Dimension(100,100));
         statusLabel = new JLabel("Press get recommendation to continue.");
         factorsLabel = new JLabel();
         factorsLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 30));

@@ -31,7 +31,7 @@ public class UserPreferenceController implements ActionListener{
         Object obj = ae.getSource();
         if (obj==upv.getWpf().getUpp().getBot().getSavePreferences()) {
             try {
-                String sql = "UPDATE preference SET transportation='"+upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', distance='" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', rain='" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', snow='" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "' WHERE id = 1";
+                String sql = "UPDATE preference SET name = '"+upv.getWpf().getUpp().getMid().getProfileNameField().getText()+"', transportation='"+upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', distance='" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', rain='" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', snow='" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "' WHERE id = 1";
                 database.insertSql(sql);
                 upv.getWpf().getUpp().getBot().getStatusMessage().setVisible(true);
             } catch (SQLException ex) {

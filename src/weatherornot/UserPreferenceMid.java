@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,11 +22,17 @@ class UserPreferenceMid extends JPanel {
     private WComboBox distance;
     private WComboBox travelInRain;
     private WComboBox travelInSnow;
-    private JLabel transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
+    private JTextField profileNameField;
+    private JLabel profileName, transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
     
     UserPreferenceMid () {
         super();
         setBackground(new Color(116,130,143));
+        
+        profileName =  addLabel("Profile name:");
+        profileNameField = new JTextField();
+        add(profileName);
+        add(profileNameField);
         
         transportationLabel = addLabel("Mode of Transportation: ");
         add(transportationLabel);
@@ -51,7 +58,7 @@ class UserPreferenceMid extends JPanel {
         travelInSnow = new WComboBox(snow);
         add(travelInSnow);
         
-        setLayout(new GridLayout(4,2));
+        setLayout(new GridLayout(5,2));
     }
     
     JLabel addLabel(String in) {
@@ -77,4 +84,9 @@ class UserPreferenceMid extends JPanel {
     public JComboBox getTravelInSnow() {
         return travelInSnow;
     }
+
+    public JTextField getProfileNameField() {
+        return profileNameField;
+    }
+    
 }

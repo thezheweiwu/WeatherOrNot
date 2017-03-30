@@ -14,12 +14,14 @@ import java.sql.SQLException;
  */
 public class UserProfile {
     
+    private String name;
     private String transportationMode;
     private double maxDistance;
     private boolean inRain;
     private boolean inSnow;
     
     UserProfile() {
+        name = "Default Profile";
         transportationMode = "Walking";
         maxDistance = 1.0;
         inRain = true;
@@ -29,6 +31,7 @@ public class UserProfile {
 
     UserProfile(ResultSet rows) throws SQLException {
         while(rows.next()) {
+            name = rows.getString("name");
             transportationMode = rows.getString("transportation");
             maxDistance = Double.parseDouble(rows.getString("distance"));
             if (rows.getString("rain").equals("Yes")) {
@@ -51,7 +54,7 @@ public class UserProfile {
      * @return
      */
     public String toString() {
-        return transportationMode + ", " + maxDistance + ", inRain{" + inRain + "}, inSnow{" +inSnow+"}";
+        return name;
     }
 
     public String getTransportationMode() {

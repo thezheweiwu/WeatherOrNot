@@ -7,6 +7,8 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.*;
@@ -15,7 +17,7 @@ import javax.swing.*;
  *
  * @author Zhewei
  */
-class WeatherPanel extends JPanel{
+class WeatherPanel extends JPanel implements ActionListener{
     
     private final WeatherPanelTop top;
     private final WeatherPanelMid mid;
@@ -33,6 +35,8 @@ class WeatherPanel extends JPanel{
         add(bot, BorderLayout.SOUTH);
         right = new SavedLocationPanel();
         add(right, BorderLayout.EAST);
+        right.setVisible(false);
+        top.getChangeLocationButton().addActionListener(this);
     }
 
     public WeatherPanelTop getTop() {
@@ -45,6 +49,13 @@ class WeatherPanel extends JPanel{
 
     public WeatherPanelBot getBot() {
         return bot;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.getTop().getChangeLocationButton()) {
+            right.setVisible(!right.isVisible());
+        }
     }
     
     

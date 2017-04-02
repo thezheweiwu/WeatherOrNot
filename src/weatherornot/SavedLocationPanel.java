@@ -49,6 +49,7 @@ public class SavedLocationPanel extends JPanel {
             }
         };
         
+        
         for (TableObject e : data) {
             model.addRow(new Object[]{e.getCityRegion(), e.getLat(), e.getLongitude()});
         }

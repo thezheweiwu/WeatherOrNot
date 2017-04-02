@@ -7,6 +7,7 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
+import java.sql.SQLException;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
@@ -17,7 +18,7 @@ public class WeatherFrame extends WFrame {
     
     private WeatherPanel wp;
     
-    WeatherFrame() throws IOException, GeoIp2Exception {
+    WeatherFrame() throws IOException, GeoIp2Exception, ClassNotFoundException, SQLException {
         super("Weather or Not");
         wp = new WeatherPanel();
         add(wp);

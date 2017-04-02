@@ -80,7 +80,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
             return 0;
         }
         else {
-            if (profile.getTransportationMode()=="Car" || profile.getTransportationMode()=="Horse") {
+            if ("Horse".equals(profile.getTransportationMode()) || "Car".equals(profile.getTransportationMode())) {
             // how fast is the wind going?
             if (model.getWeather().getCurrently().get("windSpeed").asDouble()>50) {
                 return 0;
@@ -89,6 +89,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
                 // how far is the destination?
                 if (distance<10) {
                     double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
+                    System.out.println(preciProb);
                     // how likely is it to precipitate during the travel?
                     if (preciProb>0.80) {
                         // if it is likely to precipitate, is the distance within the tolerable range
@@ -134,7 +135,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
                 if (distance<10) {
                     double preciProb = model.getWeather().getCurrently().get("precipProbability").asDouble();
                     // how likely is it to precipitate during the travel?
-                    if (preciProb>80) {
+                    if (preciProb>.80) {
                         // if it is likely to precipitate, is the distance within the tolerable range
                         if (distance>profile.getMaxDistance()) {
                             return 0;
@@ -146,7 +147,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
                 }
                 else if(distance<60) {
                     double preciProb = model.getMaxPreciHourly();
-                    if (preciProb>80) {
+                    if (preciProb>.80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }
@@ -157,7 +158,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
                 }
                 else {
                     double preciProb = model.getMaxPreciToday();
-                    if (preciProb>80) {
+                    if (preciProb>.80) {
                         if (distance>profile.getMaxDistance()) {
                             return 0;
                         }

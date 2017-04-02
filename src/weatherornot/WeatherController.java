@@ -53,8 +53,8 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getMid().getLocationLabel().setText("Location: " + model.getLocation().getCity() + ", " + model.getLocation().getState());
         view.getWf().getWp().getMid().getSummaryLabel().setText("Summary: " + model.getWeather().getCurrently().get("summary").toString().substring(1, model.getWeather().getCurrently().get("summary").toString().length() - 1));
         view.getWf().getWp().getMid().getPrecipProbabilityLabel().setText("Precipitation Probability: " + String.format("%.0f", Double.parseDouble(model.getWeather().getCurrently().get("precipProbability").toString()) * 100) + "%");
-        view.getWf().getWp().getMid().getTemperatureLabel().setText("Temperature: " + model.getWeather().getCurrently().get("temperature") + model.getLocation().getWeatherUnit());
-        view.getWf().getWp().getMid().getRealFeelLabel().setText("Real Feel: " + model.getWeather().getCurrently().get("apparentTemperature") + model.getLocation().getWeatherUnit());
+        view.getWf().getWp().getMid().getTemperatureLabel().setText("Temperature: " + (int)Double.parseDouble(model.getWeather().getCurrently().get("temperature").toString()) + model.getLocation().getWeatherUnit());
+        view.getWf().getWp().getMid().getRealFeelLabel().setText("Real Feel: " + (int)Double.parseDouble(model.getWeather().getCurrently().get("apparentTemperature").toString()) + model.getLocation().getWeatherUnit());
         view.getWf().getWp().getMid().getHumidityLabel().setText("Humidity: " + String.format("%.0f", Double.parseDouble(model.getWeather().getCurrently().get("humidity").toString()) * 100) + "%");
         view.getWf().getWp().getMid().getWindSpeedLabel().setText("Wind Speed: " + model.getWeather().getCurrently().get("windSpeed").toString() + " " + model.getLocation().getWindUnit());
     }

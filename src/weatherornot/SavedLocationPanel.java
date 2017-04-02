@@ -49,10 +49,15 @@ public class SavedLocationPanel extends JPanel {
             }
         };
         
-        
         for (TableObject e : data) {
             model.addRow(new Object[]{e.getCityRegion(), e.getLat(), e.getLongitude()});
         }
+        
+        for (int i = model.getRowCount() - 1; i >= 0; i--)
+{
+    if (model.getValueAt(i, 0) == null)
+        model.removeRow(i);
+}
         
         locations = new JTable(model);
         add(locations, BorderLayout.CENTER);

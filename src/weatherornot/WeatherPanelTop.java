@@ -22,7 +22,7 @@ class WeatherPanelTop extends JPanel {
     WeatherPanelTop() {
         super();
         setBackground(new Color(150, 192, 206));
-        refreshButton = addButton("Refresh");
+        refreshButton = addButton("Refresh Weather");
         add(refreshButton);
         changeLocationButton = addButton("See Locations");
         add(changeLocationButton);

@@ -45,6 +45,7 @@ public class RecommendMid extends JPanel{
         
         percentageSlide = new JSlider();
         percentageSlide.setPreferredSize(new Dimension(100,100));
+        percentageSlide.setBackground(new Color(116,130,143));
         factorsLabel = new JLabel();
         factorsLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 30));
         add(percentageSlide);

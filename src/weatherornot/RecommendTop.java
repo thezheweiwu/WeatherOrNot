@@ -7,6 +7,7 @@ package weatherornot;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,12 +17,21 @@ import javax.swing.JPanel;
  */
 public class RecommendTop extends JPanel{
     private final JLabel pageTitle;
+    private JLabel statusLabel;
     
     RecommendTop() {
         super();
         setBackground(new Color(150,192,206));
         pageTitle = newLabel("User Recommendation");
         add(pageTitle);
+        
+        statusLabel = new JLabel("Press get recommendation to continue.");
+        statusLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+        statusLabel.setForeground(Color.white);
+        statusLabel.setHorizontalAlignment(JLabel.CENTER);
+        
+        add(statusLabel);
+        setLayout(new GridLayout(2, 1));
     }
     
     private JLabel newLabel(String title) {

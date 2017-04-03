@@ -7,6 +7,7 @@ package weatherornot;
 
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,7 +18,7 @@ class WeatherView {
     private WeatherFrame wf;
     private WeatherModel wm;
     
-    WeatherView(WeatherModel model) throws IOException, GeoIp2Exception {
+    WeatherView(WeatherModel model) throws IOException, GeoIp2Exception, ClassNotFoundException, SQLException {
         wm = new WeatherModel();
         wf = new WeatherFrame();
     }

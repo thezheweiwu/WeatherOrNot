@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  */
 public class RecommendBot extends JPanel{
     private JButton changeUserPreferencesButton, refreshButton;
+    private JButton getButton;
     
     RecommendBot () {
         super();
@@ -31,6 +32,11 @@ public class RecommendBot extends JPanel{
         refreshButton.setForeground(Color.white);
         add(refreshButton);
         
+        getButton = new JButton("Get Recommendation");
+        getButton.setBackground(new Color(194, 91, 86));
+        getButton.setForeground(Color.white);
+        add(getButton);
+        
     }
 
     public JButton getChangeUserPreferencesButton() {
@@ -39,6 +45,11 @@ public class RecommendBot extends JPanel{
 
     public JButton getRefreshButton() {
         return refreshButton;
+    }
+    
+    
+    public JButton getGetButton() {
+        return getButton;
     }
     
 }

@@ -46,7 +46,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
         rv.getRf().getRp().getRm().getRight().setOptions(options);
         rv.getRf().getRp().getRm().getRight().optionsVisible();
         rv.getRf().getRp().getRb().getChangeUserPreferencesButton().addActionListener(this);
-        rv.getRf().getRp().getRm().getRight().getGetButton().addActionListener(this);
+        rv.getRf().getRp().getRb().getGetButton().addActionListener(this);
         rv.getRf().getRp().getRm().getLeft().getPercentageSlide().addChangeListener(this);
     }
 
@@ -60,7 +60,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
                 Logger.getLogger(RecommendationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if (obj==rv.getRf().getRp().getRm().getRight().getGetButton()) {
+        else if (obj==rv.getRf().getRp().getRb().getGetButton()) {
             Double value;
             try {
                 value = Double.valueOf(rv.getRf().getRp().getRm().getRight().getHowFar().getText());

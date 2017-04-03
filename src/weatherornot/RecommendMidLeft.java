@@ -19,7 +19,6 @@ import javax.swing.JSlider;
 public class RecommendMidLeft extends JPanel {
     
     private JSlider percentageSlide;
-    private JLabel statusLabel;
     private JLabel factorsLabel;
     
     RecommendMidLeft() {
@@ -27,22 +26,16 @@ public class RecommendMidLeft extends JPanel {
         setLayout(new BorderLayout());
         percentageSlide = new JSlider();
         percentageSlide.setPreferredSize(new Dimension(100,100));
-        statusLabel = new JLabel("Press get recommendation to continue.");
         factorsLabel = new JLabel();
         factorsLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 30));
         add(factorsLabel, BorderLayout.CENTER);
         add(percentageSlide, BorderLayout.SOUTH);
-        add(statusLabel, BorderLayout.NORTH);
     }
 
     public JSlider getPercentageSlide() {
         return percentageSlide;
     }
 
-    public JLabel getStatusLabel() {
-        return statusLabel;
-    }
-    
     public JLabel getFactorsLabel() {
         return factorsLabel;
     }

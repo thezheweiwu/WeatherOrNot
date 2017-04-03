@@ -2,10 +2,15 @@ package weatherornot;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,17 +23,57 @@ import javax.swing.JPanel;
  * @author Caitlin
  */
 public class RecommendMid extends JPanel{
-    private RecommendMidLeft left;
-    private RecommendMidRight right;
+    private JTextField inHowFar;
+    private JLabel whichProfile, howFar;
+    private JComboBox preferences;
+    private JSlider percentageSlide;
+    private JLabel factorsLabel;
     
-    RecommendMid (RecommendMidLeft left, RecommendMidRight right) {
-    super();
+    RecommendMid () {
+        super();
         setBackground(new Color(116,130,143));
-        this.left = left;
-        this.right = right;
-        setLayout(new GridLayout(1,2));
-        add(left);
-        add(right);
+        
+        howFar = addLabel("How far are you traveling...?   ");
+        inHowFar = new JTextField("miles...");
+        add(howFar);
+        add(inHowFar);
+        
+        whichProfile = addLabel("Which profile...?   ");
+        preferences = new JComboBox();
+        add(whichProfile);
+        add(preferences);
+        
+        percentageSlide = new JSlider();
+        percentageSlide.setPreferredSize(new Dimension(100,100));
+        factorsLabel = new JLabel();
+        factorsLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 30));
+        add(percentageSlide);
+        add(factorsLabel);
+        
+        setLayout(new GridLayout(3,2));
+        
+    }
+    
+     public JSlider getPercentageSlide() {
+        return percentageSlide;
+    }
+
+    public JLabel getFactorsLabel() {
+        return factorsLabel;
+    }
+    
+     public JTextField getinHowFar() {
+        return inHowFar;
+    }
+    
+    public void setOptions(ArrayList<String> options) {
+        for (String item : options) {
+            preferences.addItem(item);
+        }
+    }
+    
+    public JComboBox getPreferences() {
+        return preferences;
     }
     
      JLabel addLabel(String in) {
@@ -38,14 +83,11 @@ public class RecommendMid extends JPanel{
         label.setHorizontalAlignment(JLabel.CENTER);
         return label;
     }
-
-    public RecommendMidLeft getLeft() {
-        return left;
-    }
-
-    public RecommendMidRight getRight() {
-        return right;
-    }
      
+     public void optionsVisible() {
+        //add(howFar, BorderLayout.NORTH);
+        //add(preferences, BorderLayout.CENTER);
+    }
+    
      
 }

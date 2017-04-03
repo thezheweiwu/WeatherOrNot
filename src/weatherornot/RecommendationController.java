@@ -43,11 +43,11 @@ public class RecommendationController implements ActionListener, ChangeListener{
         for (UserProfile item: up) {
             options.add(item.toString());
         }
-        rv.getRf().getRp().getRm().getRight().setOptions(options);
-        rv.getRf().getRp().getRm().getRight().optionsVisible();
+        rv.getRf().getRp().getRm().setOptions(options);
+        rv.getRf().getRp().getRm().optionsVisible();
         rv.getRf().getRp().getRb().getChangeUserPreferencesButton().addActionListener(this);
         rv.getRf().getRp().getRb().getGetButton().addActionListener(this);
-        rv.getRf().getRp().getRm().getLeft().getPercentageSlide().addChangeListener(this);
+        rv.getRf().getRp().getRm().getPercentageSlide().addChangeListener(this);
     }
 
     @Override
@@ -63,14 +63,14 @@ public class RecommendationController implements ActionListener, ChangeListener{
         else if (obj==rv.getRf().getRp().getRb().getGetButton()) {
             Double value;
             try {
-                value = Double.valueOf(rv.getRf().getRp().getRm().getRight().getHowFar().getText());
+                value = Double.valueOf(rv.getRf().getRp().getRm().getinHowFar().getText());
             }
             catch (NumberFormatException exception) {
                 value = 0.0;
             }
-            int num = getRecommendation(value, up.get(rv.getRf().getRp().getRm().getRight().getPreferences().getSelectedIndex()));
-            rv.getRf().getRp().getRm().getLeft().getFactorsLabel().setText(Integer.toString(num));
-            rv.getRf().getRp().getRm().getLeft().getPercentageSlide().setValue(num);
+            int num = getRecommendation(value, up.get(rv.getRf().getRp().getRm().getPreferences().getSelectedIndex()));
+            rv.getRf().getRp().getRm().getFactorsLabel().setText(Integer.toString(num));
+            rv.getRf().getRp().getRm().getPercentageSlide().setValue(num);
         }
     }
     // implement this...
@@ -176,8 +176,8 @@ public class RecommendationController implements ActionListener, ChangeListener{
     @Override
     public void stateChanged(ChangeEvent ce) {
         Object obj = ce.getSource();
-        if (obj==rv.getRf().getRp().getRm().getLeft().getPercentageSlide()) {
-            rv.getRf().getRp().getRm().getLeft().getFactorsLabel().setText(Integer.toString(rv.getRf().getRp().getRm().getLeft().getPercentageSlide().getValue()));
+        if (obj==rv.getRf().getRp().getRm().getPercentageSlide()) {
+            rv.getRf().getRp().getRm().getFactorsLabel().setText(Integer.toString(rv.getRf().getRp().getRm().getPercentageSlide().getValue()));
         }
     }
 }

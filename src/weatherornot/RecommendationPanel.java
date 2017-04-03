@@ -16,17 +16,13 @@ public class RecommendationPanel extends JPanel{
     private RecommendTop rt;
     private RecommendMid rm;
     private RecommendBot rb;
-    private RecommendMidLeft left;
-    private RecommendMidRight right;
     
     RecommendationPanel() {
         super();
         setLayout(new BorderLayout());
         rt = new RecommendTop();
         add(rt, BorderLayout.NORTH);
-        left = new RecommendMidLeft();
-        right = new RecommendMidRight();
-        rm = new RecommendMid(left, right);
+        rm = new RecommendMid();
         add(rm, BorderLayout.CENTER);
         rb = new RecommendBot();
         add(rb, BorderLayout.SOUTH);
@@ -44,13 +40,6 @@ public class RecommendationPanel extends JPanel{
         return rb;
     }
 
-    public RecommendMidLeft getLeft() {
-        return left;
-    }
-
-    public RecommendMidRight getRight() {
-        return right;
-    }
     
     
 }

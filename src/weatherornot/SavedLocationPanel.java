@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Zhewei
  */
 public class SavedLocationPanel extends JPanel {
-    
+
     private JLabel title;
     private final Object[] columnNames = {"City - Region", "Latitude", "Longitude"};
     private final ArrayList<TableObject> data;
@@ -27,38 +27,31 @@ public class SavedLocationPanel extends JPanel {
     private DefaultTableModel model;
     private DB database;
 
-    
     public SavedLocationPanel() throws ClassNotFoundException, SQLException {
         super();
         this.setLayout(new BorderLayout());
         title = new JLabel("Saved Locations");
         add(title, BorderLayout.NORTH);
-        
+
         data = new ArrayList<>();
         database = new DB();
         String sql = "SELECT * FROM location";
         ResultSet results = database.getRows(sql);
-        
-        while(results.next()) {
+
+        while (results.next()) {
             data.add(new TableObject(results.getString("city") + " - " + results.getString("state"), results.getString("latitude"), results.getString("longitude")));
         }
-        
-        model = new DefaultTableModel(columnNames, data.size()) {
+
+        model = new DefaultTableModel(columnNames, 0) {
             public boolean isCellEditable(int i, int j) {
                 return false;
             }
         };
-        
+                
         for (TableObject e : data) {
             model.addRow(new Object[]{e.getCityRegion(), e.getLat(), e.getLongitude()});
         }
-        
-        for (int i = model.getRowCount() - 1; i >= 0; i--)
-{
-    if (model.getValueAt(i, 0) == null)
-        model.removeRow(i);
-}
-        
+
         locations = new JTable(model);
         add(locations, BorderLayout.CENTER);
     }

@@ -33,7 +33,7 @@ class WeatherController implements ActionListener {
         this.view = view;
         view.getWf().getWp().getTop().getRefresh().addActionListener(this);
         view.getWf().getWp().getBot().getSubmit().addActionListener(this);
-        //view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
+        view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
         view.getWf().getWp().getBot().getSaveLocation().addActionListener(this);
         updateInfo("");
     }
@@ -81,7 +81,7 @@ class WeatherController implements ActionListener {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-/*        if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
+        if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
             try {
                 rc = new RecommendationController(new RecommendationView(), model);
             } catch (ClassNotFoundException ex) {
@@ -89,7 +89,7 @@ class WeatherController implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } */
+        }
         if (obj== view.getWf().getWp().getBot().getSaveLocation()) {
             try {
                 DB data = new DB();

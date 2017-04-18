@@ -6,6 +6,7 @@
 package weatherornot;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -22,7 +23,9 @@ public class RecommendationPanel extends JPanel{
         setLayout(new BorderLayout());
         rt = new RecommendTop();
         add(rt, BorderLayout.NORTH);
+        setBackground(new Color(116,130,143));
         rm = new RecommendMid();
+        add(rm);
         add(rm, BorderLayout.CENTER);
         rb = new RecommendBot();
         add(rb, BorderLayout.SOUTH);

@@ -21,6 +21,7 @@ class WeatherPanel extends JPanel implements ActionListener{
     
     private final WeatherPanelTop top;
     private final WeatherPanelMid mid;
+    private final RecommendationPanel mid2;
     private final WeatherPanelBot bot;
     private final SavedLocationPanel right;
     
@@ -30,6 +31,7 @@ class WeatherPanel extends JPanel implements ActionListener{
         top = new WeatherPanelTop();
         add(top,BorderLayout.NORTH);
         mid = new WeatherPanelMid();
+        mid2 = new RecommendationPanel();
         add(mid,BorderLayout.CENTER);
         bot = new WeatherPanelBot();
         add(bot, BorderLayout.SOUTH);
@@ -37,6 +39,7 @@ class WeatherPanel extends JPanel implements ActionListener{
         add(right, BorderLayout.EAST);
         right.setVisible(false);
         top.getChangeLocationButton().addActionListener(this);
+        top.getGetRecommendationButton().addActionListener(this);
     }
 
     public WeatherPanelTop getTop() {
@@ -55,6 +58,21 @@ class WeatherPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.getTop().getChangeLocationButton()) {
             right.setVisible(!right.isVisible());
+        }
+        if (e.getSource() == this.getTop().getGetRecommendationButton()) {
+            if (mid.isVisible() == true) {
+                mid.setVisible(false);
+                add(mid2, BorderLayout.CENTER);
+                mid2.setVisible(true);
+            }
+            else {
+                mid.setVisible(true);
+                mid2.setVisible(false);
+                remove(mid2);
+            }
+            //mid.setVisible(!mid.isVisible());
+            
+            
         }
     }
     

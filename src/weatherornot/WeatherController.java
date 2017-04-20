@@ -38,7 +38,6 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getBot().getSaveLocation().addActionListener(this);
         updateInfo("");
         rc = new RecommendationController(new RecommendationView(), model);
-        view.getWf().getWp().add(rc.getRv().getRf(),BorderLayout.CENTER);
     }
 
     private void updateInfo(String zipcode) throws IOException, GeoIp2Exception {
@@ -86,12 +85,14 @@ class WeatherController implements ActionListener {
         }
         if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
                 if (view.getWf().getWp().getMid().isVisible()) {
+                    view.getWf().getWp().add(rc.getRv().getRf(),BorderLayout.CENTER);
                     rc.getRv().getRf().setVisible(true);
                     view.getWf().getWp().getMid().setVisible(false);
                     view.getWf().getWp().getBot().setVisible(false);
                     System.out.println(1);
                 }
                 else {
+                    view.getWf().getWp().remove(rc.getRv().getRf());
                     rc.getRv().getRf().setVisible(false);
                     view.getWf().getWp().getMid().setVisible(true);
                     view.getWf().getWp().getBot().setVisible(true);

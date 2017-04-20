@@ -43,34 +43,36 @@ public class RecommendationController implements ActionListener, ChangeListener{
         for (UserProfile item: up) {
             options.add(item.toString());
         }
-        rv.getRf().getRp().getRm().setOptions(options);
-        rv.getRf().getRp().getRm().optionsVisible();
-        rv.getRf().getRp().getRb().getChangeUserPreferencesButton().addActionListener(this);
-        rv.getRf().getRp().getRb().getGetButton().addActionListener(this);
-        rv.getRf().getRp().getRm().getPercentageSlide().addChangeListener(this);
+        
+        
+        rv.getRf().getRm().setOptions(options);
+        rv.getRf().getRm().optionsVisible();
+        rv.getRf().getRb().getChangeUserPreferencesButton().addActionListener(this);
+        rv.getRf().getRb().getGetButton().addActionListener(this);
+        rv.getRf().getRm().getPercentageSlide().addChangeListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-        if (obj== rv.getRf().getRp().getRb().getChangeUserPreferencesButton()) {
+        if (obj== rv.getRf().getRb().getChangeUserPreferencesButton()) {
             try {
                 upc = new UserPreferenceController();
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RecommendationController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if (obj==rv.getRf().getRp().getRb().getGetButton()) {
+        else if (obj==rv.getRf().getRb().getGetButton()) {
             Double value;
             try {
-                value = Double.valueOf(rv.getRf().getRp().getRm().getinHowFar().getText());
+                value = Double.valueOf(rv.getRf().getRm().getinHowFar().getText());
             }
             catch (NumberFormatException exception) {
                 value = 0.0;
             }
-            int num = getRecommendation(value, up.get(rv.getRf().getRp().getRm().getPreferences().getSelectedIndex()));
-            rv.getRf().getRp().getRm().getFactorsLabel().setText(Integer.toString(num));
-            rv.getRf().getRp().getRm().getPercentageSlide().setValue(num);
+            int num = getRecommendation(value, up.get(rv.getRf().getRm().getPreferences().getSelectedIndex()));
+            rv.getRf().getRm().getFactorsLabel().setText(Integer.toString(num));
+            rv.getRf().getRm().getPercentageSlide().setValue(num);
         }
     }
     // implement this...
@@ -176,8 +178,14 @@ public class RecommendationController implements ActionListener, ChangeListener{
     @Override
     public void stateChanged(ChangeEvent ce) {
         Object obj = ce.getSource();
-        if (obj==rv.getRf().getRp().getRm().getPercentageSlide()) {
-            rv.getRf().getRp().getRm().getFactorsLabel().setText(Integer.toString(rv.getRf().getRp().getRm().getPercentageSlide().getValue()));
+        if (obj==rv.getRf().getRm().getPercentageSlide()) {
+            rv.getRf().getRm().getFactorsLabel().setText(Integer.toString(rv.getRf().getRm().getPercentageSlide().getValue()));
         }
     }
+
+    public RecommendationView getRv() {
+        return rv;
+    }
+    
+    
 }

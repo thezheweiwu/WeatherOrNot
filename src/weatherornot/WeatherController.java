@@ -7,6 +7,7 @@ package weatherornot;
 
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -26,9 +27,9 @@ class WeatherController implements ActionListener {
     private WeatherModel model;
     private WeatherView view;
     private UserPreferenceController upc;
-    private RecommendationController rc; //change to controller after we figure a recomm. formula
+    private RecommendationController rc;
 
-    WeatherController(WeatherModel model, WeatherView view) throws IOException, GeoIp2Exception {
+    WeatherController(WeatherModel model, WeatherView view) throws IOException, GeoIp2Exception, ClassNotFoundException, SQLException {
         this.model = model;
         this.view = view;
         view.getWf().getWp().getTop().getRefresh().addActionListener(this);
@@ -36,6 +37,8 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getTop().getGetRecommendationButton().addActionListener(this);
         view.getWf().getWp().getBot().getSaveLocation().addActionListener(this);
         updateInfo("");
+        rc = new RecommendationController(new RecommendationView(), model);
+        view.getWf().getWp().add(rc.getRv().getRf(),BorderLayout.CENTER);
     }
 
     private void updateInfo(String zipcode) throws IOException, GeoIp2Exception {
@@ -82,13 +85,18 @@ class WeatherController implements ActionListener {
             }
         }
         if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
-            try {
-                rc = new RecommendationController(new RecommendationView(), model);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                if (view.getWf().getWp().getMid().isVisible()) {
+                    rc.getRv().getRf().setVisible(true);
+                    view.getWf().getWp().getMid().setVisible(false);
+                    view.getWf().getWp().getBot().setVisible(false);
+                    System.out.println(1);
+                }
+                else {
+                    rc.getRv().getRf().setVisible(false);
+                    view.getWf().getWp().getMid().setVisible(true);
+                    view.getWf().getWp().getBot().setVisible(true);
+                    System.out.println(2);
+                }
         }
         if (obj== view.getWf().getWp().getBot().getSaveLocation()) {
             try {

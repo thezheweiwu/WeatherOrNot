@@ -10,23 +10,23 @@ package weatherornot;
  * @author Caitlin
  */
 public class RecommendationView {
-    private RecommendationFrame rf; 
+    private RecommendationPanel rf; 
     
     RecommendationView () {
-        rf = new RecommendationFrame();
+        rf = new RecommendationPanel();
     }
 
     /**
      * @return the rf
      */
-    public RecommendationFrame getRf() {
+    public RecommendationPanel getRf() {
         return rf;
     }
 
     /**
      * @param rf the rf to set
      */
-    public void setRf(RecommendationFrame rf) {
+    public void setRf(RecommendationPanel rf) {
         this.rf = rf;
     }
 }

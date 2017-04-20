@@ -5,6 +5,7 @@
  */
 package weatherornot;
 
+import java.awt.Color;
 import javax.swing.JComboBox;
 
 /**
@@ -15,5 +16,6 @@ public class WComboBox extends JComboBox {
     
     WComboBox(String[] a) {
         super(a);
+        this.setBackground(Color.pink);
     }
 }

@@ -81,6 +81,9 @@ public class Location {
                 windUnit = "mph";
             }
         }
+        if (latitude == null) {
+            latitude = "ERROR";
+        }
     }
     
     Location (String latitude, String longitude, String city, String state, String country) {

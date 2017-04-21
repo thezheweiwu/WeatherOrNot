@@ -138,9 +138,16 @@ class WeatherController implements ActionListener {
 
     private void isZip5() throws IOException, GeoIp2Exception {
         if (view.getWf().getWp().getBot().getZipcodeField().getText().length() == 5) {
+            Location s = new Location(view.getWf().getWp().getBot().getZipcodeField().getText());
+            if (s.getLatitude().equals("ERROR")) {
+                JOptionPane.showMessageDialog(view.getWf(), "Location with that zipcode not found.");
+            }
+            else {
             updateInfo(view.getWf().getWp().getBot().getZipcodeField().getText());
+            }
         } else {
             JOptionPane.showMessageDialog(view.getWf(), "Error: The length of the zipcode must be 5 numbers long.");
         }
+        
     }
 }

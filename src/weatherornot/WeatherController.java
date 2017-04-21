@@ -136,6 +136,7 @@ class WeatherController implements ActionListener {
                 DB data = new DB();
                 String sql = "INSERT INTO location (city, state, country, longitude, latitude) values ('"+model.getLocation().getCity()+"', '"+model.getLocation().getState()+"', '"+model.getLocation().getCountry()+"', '"+model.getLocation().getLongitude()+"', '"+model.getLocation().getLatitude()+"')";
                 data.insertSql(sql);
+                this.view.getWf().getWp().getRight().getModel().addRow(new Object[]{model.getLocation().getCity()+", "+model.getLocation().getState(), model.getLocation().getLatitude(), model.getLocation().getLongitude()});
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

@@ -59,5 +59,11 @@ public class SavedLocationPanel extends JPanel {
     public JTable getLocations() {
         return locations;
     }
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+    
+    
     
 }

@@ -67,7 +67,6 @@ public class Location {
         }
     }
 
-    // implement 
     Location(String zipcode) throws FileNotFoundException, IOException {
         CsvReader zipDB = new CsvReader("db/zipcode.csv");
         zipDB.readHeaders();
@@ -82,6 +81,16 @@ public class Location {
                 windUnit = "mph";
             }
         }
+    }
+    
+    Location (String latitude, String longitude, String city, String state, String country) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.weatherUnit = "°F";
+        this.windUnit = "mph";
     }
 
     public String getLatitude() {

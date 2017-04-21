@@ -20,19 +20,13 @@ public class WeatherOrNot {
      * @param args the command line arguments
      * @throws java.io.IOException
      * @throws com.maxmind.geoip2.exception.GeoIp2Exception
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws IOException, GeoIp2Exception, ClassNotFoundException, SQLException {
         WeatherModel model = new WeatherModel();
         WeatherView view = new WeatherView(model);
         WeatherController controller = new WeatherController(model, view); 
-//        DB data = new DB();
-//        ResultSet rs = data.getRows("SELECT * FROM preference WHERE id = 1");
-//        while(rs.next())
-//      {
-//        // read the result set
-//        System.out.println("transportation = " + rs.getString("transportation"));
-//        System.out.println("distance = " + rs.getString("distance"));
-//      }
     }
     
 }

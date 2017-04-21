@@ -5,7 +5,6 @@
  */
 package weatherornot;
 
-import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.Color;
 import java.awt.Font;

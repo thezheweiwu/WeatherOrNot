@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class UserPreferenceController implements ActionListener {
 
-    private DB database;
-    private UserPreferenceView upv;
-    private RecommendationController rc;
+    private final DB database;
+    private final UserPreferenceView upv;
+    private final RecommendationController rc;
 
     UserPreferenceController(RecommendationController rc) throws ClassNotFoundException, SQLException {
         database = new DB();
@@ -55,9 +55,7 @@ public class UserPreferenceController implements ActionListener {
                 },
                         5000
                 );
-            } catch (SQLException ex) {
-                Logger.getLogger(UserPreferenceController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(UserPreferenceController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

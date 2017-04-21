@@ -10,9 +10,9 @@ package weatherornot;
  * @author Zhewei
  */
 class TableObject {
-    private String cityRegion;
-    private String lat;
-    private String longitude;
+    private final String cityRegion;
+    private final String lat;
+    private final String longitude;
     
     public TableObject(String cityRegion, String lat, String longitude) {
         this.cityRegion = cityRegion;

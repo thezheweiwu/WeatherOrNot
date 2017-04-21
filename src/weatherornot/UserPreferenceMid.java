@@ -17,13 +17,13 @@ import javax.swing.JTextField;
  *
  * @author Zhewei
  */
-class UserPreferenceMid extends JPanel {
-    private WComboBox transportation;
-    private WComboBox distance;
-    private WComboBox travelInRain;
-    private WComboBox travelInSnow;
-    private JTextField profileNameField;
-    private JLabel profileName, transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
+final class UserPreferenceMid extends JPanel {
+    private final WComboBox transportation;
+    private final WComboBox distance;
+    private final WComboBox travelInRain;
+    private final WComboBox travelInSnow;
+    private final JTextField profileNameField;
+    private final JLabel profileName, transportationLabel, distanceLabel, travelInRainLabel, travelInSnowLabel; 
     
     UserPreferenceMid () {
         super();

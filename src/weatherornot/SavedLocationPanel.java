@@ -23,8 +23,8 @@ public class SavedLocationPanel extends JPanel {
     private JLabel title;
     private final Object[] columnNames = {"City - Region", "Latitude", "Longitude"};
     private final ArrayList<TableObject> data;
-    private JTable locations;
-    private DefaultTableModel model;
+    private final JTable locations;
+    private final DefaultTableModel model;
     private DB database;
 
     public SavedLocationPanel() throws ClassNotFoundException, SQLException {
@@ -43,14 +43,15 @@ public class SavedLocationPanel extends JPanel {
         }
 
         model = new DefaultTableModel(columnNames, 0) {
+            @Override
             public boolean isCellEditable(int i, int j) {
                 return false;
             }
         };
                 
-        for (TableObject e : data) {
+        data.stream().forEach((e) -> {
             model.addRow(new Object[]{e.getCityRegion(), e.getLat(), e.getLongitude()});
-        }
+        });
 
         locations = new JTable(model);
         add(locations, BorderLayout.CENTER);

@@ -6,7 +6,6 @@
 package weatherornot;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -15,8 +14,8 @@ import javax.swing.JPanel;
  * @author Caitlin
  */
 public class RecommendBot extends JPanel{
-    private JButton changeUserPreferencesButton;
-    private JButton getButton;
+    private final JButton changeUserPreferencesButton;
+    private final JButton getButton;
     
     RecommendBot () {
         super();

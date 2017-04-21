@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class RecommendTop extends JPanel{
     private final JLabel pageTitle;
-    private JLabel statusLabel;
+    private final JLabel statusLabel;
     
     RecommendTop() {
         super();

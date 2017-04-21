@@ -17,8 +17,8 @@ import javax.swing.JPanel;
  * @author Zhewei
  */
 class UserPreferenceBot extends JPanel {
-    private JButton savePreferences;
-    private JLabel statusMessage;
+    private final JButton savePreferences;
+    private final JLabel statusMessage;
     
     UserPreferenceBot () {
         super();

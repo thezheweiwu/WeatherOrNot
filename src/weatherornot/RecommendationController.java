@@ -21,11 +21,11 @@ import javax.swing.event.ChangeListener;
  */
 public class RecommendationController implements ActionListener, ChangeListener{
     
-    private RecommendationView rv;
+    private final RecommendationView rv;
     private UserPreferenceController upc;
-    private ArrayList<UserProfile> up;
-    private ArrayList<String> options;
-    private WeatherModel model;
+    private final ArrayList<UserProfile> up;
+    private final ArrayList<String> options;
+    private final WeatherModel model;
      
     RecommendationController(RecommendationView rv, WeatherModel model) throws ClassNotFoundException, SQLException {
         this.rv = rv;
@@ -40,9 +40,9 @@ public class RecommendationController implements ActionListener, ChangeListener{
             }
         }
         options = new ArrayList<>();
-        for (UserProfile item: up) {
+        up.stream().forEach((item) -> {
             options.add(item.toString());
-        }
+        });
         
         
         rv.getRf().getRm().setOptions(options);

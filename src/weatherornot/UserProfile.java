@@ -41,18 +41,8 @@ public class UserProfile {
             name = rows.getString("name");
             transportationMode = rows.getString("transportation");
             maxDistance = Double.parseDouble(rows.getString("distance"));
-            if (rows.getString("rain").equals("Yes")) {
-                inRain = true;
-            }
-            else {
-                inRain = false;
-            }
-            if (rows.getString("snow").equals("Yes")) {
-                inSnow = true;
-            }
-            else {
-                inSnow = false;
-            }
+            inRain = rows.getString("rain").equals("Yes");
+            inSnow = rows.getString("snow").equals("Yes");
         }
     }
     
@@ -60,6 +50,7 @@ public class UserProfile {
      *
      * @return
      */
+    @Override
     public String toString() {
         return name;
     }

@@ -13,9 +13,9 @@ import javax.swing.JPanel;
  * @author Caitlin
  */
 public class RecommendationPanel extends JPanel{
-    private RecommendTop rt;
-    private RecommendMid rm;
-    private RecommendBot rb;
+    private final RecommendTop rt;
+    private final RecommendMid rm;
+    private final RecommendBot rb;
     
     RecommendationPanel() {
         super();

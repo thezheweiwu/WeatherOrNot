@@ -1,6 +1,5 @@
 package weatherornot;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,12 +21,12 @@ import javax.swing.JTextField;
  *
  * @author Caitlin
  */
-public class RecommendMid extends JPanel{
-    private JTextField inHowFar;
-    private JLabel whichProfile, howFar;
-    private JComboBox preferences;
-    private JSlider percentageSlide;
-    private JLabel factorsLabel;
+public final class RecommendMid extends JPanel{
+    private final JTextField inHowFar;
+    private final JLabel whichProfile, howFar;
+    private final JComboBox preferences;
+    private final JSlider percentageSlide;
+    private final JLabel factorsLabel;
     
     RecommendMid () {
         super();
@@ -68,9 +67,9 @@ public class RecommendMid extends JPanel{
     }
     
     public void setOptions(ArrayList<String> options) {
-        for (String item : options) {
+        options.stream().forEach((item) -> {
             preferences.addItem(item);
-        }
+        });
     }
     
     public JComboBox getPreferences() {

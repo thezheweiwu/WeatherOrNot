@@ -108,18 +108,18 @@ class WeatherController implements ActionListener {
         }
         if(obj == view.getWf().getWp().getTop().getGetRecommendationButton()) {
                 if (view.getWf().getWp().getMid().isVisible()) {
+                    view.getWf().remove(view.getWf().getWp().getMid());
                     view.getWf().getWp().add(rc.getRv().getRf(),BorderLayout.CENTER);
                     rc.getRv().getRf().setVisible(true);
                     view.getWf().getWp().getMid().setVisible(false);
                     view.getWf().getWp().getBot().setVisible(false);
-                    System.out.println(1);
                 }
                 else {
                     view.getWf().getWp().remove(rc.getRv().getRf());
+                    view.getWf().getWp().add(view.getWf().getWp().getMid(), BorderLayout.CENTER);
                     rc.getRv().getRf().setVisible(false);
                     view.getWf().getWp().getMid().setVisible(true);
                     view.getWf().getWp().getBot().setVisible(true);
-                    System.out.println(2);
                 }
         }
         if (obj== view.getWf().getWp().getBot().getSaveLocation()) {

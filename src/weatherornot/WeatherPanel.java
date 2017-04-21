@@ -51,6 +51,11 @@ class WeatherPanel extends JPanel implements ActionListener{
         return bot;
     }
 
+    public SavedLocationPanel getRight() {
+        return right;
+    }
+    
+
     public void setTop(WeatherPanelTop top) {
         this.top = top;
     }

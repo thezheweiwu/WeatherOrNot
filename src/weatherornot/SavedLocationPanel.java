@@ -39,7 +39,7 @@ public class SavedLocationPanel extends JPanel {
         ResultSet results = database.getRows(sql);
 
         while (results.next()) {
-            data.add(new TableObject(results.getString("city") + " - " + results.getString("state"), results.getString("latitude"), results.getString("longitude")));
+            data.add(new TableObject(results.getString("city") + ", " + results.getString("state"), results.getString("latitude"), results.getString("longitude")));
         }
 
         model = new DefaultTableModel(columnNames, 0) {
@@ -55,4 +55,9 @@ public class SavedLocationPanel extends JPanel {
         locations = new JTable(model);
         add(locations, BorderLayout.CENTER);
     }
+
+    public JTable getLocations() {
+        return locations;
+    }
+    
 }

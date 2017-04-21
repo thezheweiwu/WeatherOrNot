@@ -10,13 +10,18 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -38,6 +43,24 @@ class WeatherController implements ActionListener {
         view.getWf().getWp().getBot().getSaveLocation().addActionListener(this);
         updateInfo("");
         rc = new RecommendationController(new RecommendationView(), model);
+        view.getWf().getWp().getRight().getLocations().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    try {
+                        DB data = new DB();
+                        JTable target = (JTable) e.getSource();
+                        String sql = "SELECT * FROM location WHERE id =" + (target.getSelectedRow()+1);
+                        ResultSet results = data.getRows(sql);
+                        while(results.next()) {
+                            updateInfo(results.getString("latitude"), results.getString("longitude"), results.getString("city"), results.getString("state"), results.getString("country")) ;
+                        }
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
+            }
+        });
     }
 
     private void updateInfo(String zipcode) throws IOException, GeoIp2Exception {
@@ -46,6 +69,15 @@ class WeatherController implements ActionListener {
         } else {
             model.setLocation(new Location());
         }
+        updateWeather();
+    }
+    
+    private void updateInfo(String lat, String longitude, String city, String state, String country) {
+        model.setLocation(new Location(lat, longitude, city, state, country));
+        updateWeather();
+    }
+    
+    private void updateWeather() {
         model.setWeather(new ForecastIO(model.getLocation().getLatitude(), model.getLocation().getLongitude(), "9811b7c9d35ea099b80118df438269e2"));
         long time = Long.valueOf(model.getWeather().getCurrently().get("time").toString());
         Date unixDate = new Date(time * 1000L); // *1000 is to convert seconds to milliseconds
@@ -109,8 +141,7 @@ class WeatherController implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
+        }     
     }
 
     private void isZip5() throws IOException, GeoIp2Exception {

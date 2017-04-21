@@ -36,9 +36,11 @@ public class UserPreferenceController implements ActionListener {
             try {
                 String sql = "UPDATE preference SET name = '" + upv.getWpf().getUpp().getMid().getProfileNameField().getText() + "', transportation='" + upv.getWpf().getUpp().getMid().getTransportation().getSelectedItem() + "', distance='" + upv.getWpf().getUpp().getMid().getDistance().getSelectedItem() + "', rain='" + upv.getWpf().getUpp().getMid().getTravelInRain().getSelectedItem() + "', snow='" + upv.getWpf().getUpp().getMid().getTravelInSnow().getSelectedItem() + "' WHERE id = 1";
                 database.insertSql(sql);
+                if (rc.getRv().getRf().getRm().getPreferences().getItemCount()>1) {
                 rc.getRv().getRf().getRm().getPreferences().removeItemAt(1);
-                rc.getRv().getRf().getRm().getPreferences().addItem(upv.getWpf().getUpp().getMid().getProfileNameField().getText());
                 rc.getUp().remove(1);
+                }
+                rc.getRv().getRf().getRm().getPreferences().addItem(upv.getWpf().getUpp().getMid().getProfileNameField().getText());
                 DB data = new DB();
                 ResultSet results = data.getRows("SELECT * FROM preference WHERE id = 1");
                 rc.getUp().add(1, new UserProfile(results));

@@ -97,16 +97,7 @@ class WeatherController implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         Object obj = ae.getSource();
         if (obj == view.getWf().getWp().getTop().getRefresh()) {
-            try {
-                if (view.getWf().getWp().getBot().getZipcodeField().getText().trim().equals("")) {
-                    updateInfo("");
-                }
-                else {
-                    isZip5();
-                }
-            } catch (IOException | GeoIp2Exception ex) {
-                Logger.getLogger(WeatherController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            updateWeather();
         }
         if (obj == view.getWf().getWp().getBot().getSubmit()) {
             try {

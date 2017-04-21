@@ -18,37 +18,28 @@ import javax.swing.JPanel;
  */
 class UserPreferenceBot extends JPanel {
     private JButton savePreferences;
-    private JLabel statusMessage, spaceWaster;
+    private JLabel statusMessage;
     
     UserPreferenceBot () {
         super();
         setBackground(new Color(150,192,206));
         
-        spaceWaster = new JLabel("Saved Preferencessssssssss"); //quick layout fix
-        spaceWaster.setVisible(false);
-        add(spaceWaster);
         
-        statusMessage = new JLabel("Saved Preferences");
+        statusMessage = new JLabel("Saved Preferences, closing in 5 seconds.");
         statusMessage.setFont(new Font("SansSerif", Font.BOLD, 14));
         statusMessage.setForeground(Color.white);
         statusMessage.setHorizontalAlignment(JLabel.CENTER);
         add(statusMessage);
         statusMessage.setVisible(false);
         
-        spaceWaster = new JLabel("Saved Preferencessssssssss"); //quick layout fix
-        spaceWaster.setVisible(false);
-        add(spaceWaster);
         
         savePreferences = new JButton("Save Preferences");
         savePreferences.setBackground(new Color(194, 91, 86));
         savePreferences.setForeground(Color.white);
         add(savePreferences);
         
-        spaceWaster = new JLabel("Saved Preferencessssssssss"); //quick layout fix
-        spaceWaster.setVisible(false);
-        add(spaceWaster);
         
-        setLayout(new GridLayout(1,5));
+        setLayout(new GridLayout(1,2));
     }
     
     JButton getSavePreferences() {

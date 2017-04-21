@@ -57,7 +57,7 @@ public class RecommendationController implements ActionListener, ChangeListener{
         Object obj = e.getSource();
         if (obj== rv.getRf().getRb().getChangeUserPreferencesButton()) {
             try {
-                upc = new UserPreferenceController();
+                upc = new UserPreferenceController(this);
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(RecommendationController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -185,6 +185,10 @@ public class RecommendationController implements ActionListener, ChangeListener{
 
     public RecommendationView getRv() {
         return rv;
+    }
+
+    public ArrayList<UserProfile> getUp() {
+        return up;
     }
     
     

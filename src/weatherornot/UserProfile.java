@@ -27,8 +27,15 @@ public class UserProfile {
         inRain = true;
         inSnow = false;
     }
-    
 
+    public UserProfile(String name, String transportationMode, double maxDistance, boolean inRain, boolean inSnow) {
+        this.name = name;
+        this.transportationMode = transportationMode;
+        this.maxDistance = maxDistance;
+        this.inRain = inRain;
+        this.inSnow = inSnow;
+    }
+    
     UserProfile(ResultSet rows) throws SQLException {
         while(rows.next()) {
             name = rows.getString("name");
